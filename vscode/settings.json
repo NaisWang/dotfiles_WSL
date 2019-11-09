@@ -1,0 +1,163 @@
+{
+    /**
+      plugins:
+      Beautify、c/c++、code runner、code spell checker、css peek、Debugger for chrome
+      Debugger for java、Document This、Eclipse Keymap、Git History、HTML checker、css support
+      HTML snippets、image preview、Intellisense for css class names、java dependency viewer
+      java extension pack、java Test Runner、javaScript Snippet Pack、Jquery code snippets
+      Language support for java、Leetcode、Material Theme、Path Intellisense、Preview on Web Server
+      Python、Remote-SSH、Scrolloff、vim、Visual Studio intellicode、vscode-icons
+    */
+    "window.menuBarVisibility": "toggle",
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "java.home": "F:/javaTools/jdk",
+    "code-runner.runInTerminal": true,
+    "code-runner.clearPreviousOutput": true,
+    "workbench.startupEditor": "newUntitledFile",
+    
+    // 命令行设置
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\wsl.exe",
+    
+    "files.autoSave": "afterDelay",
+    
+    // 主题设置
+    "editor.fontFamily": "Source Code Pro, 'Courier New', monospace",
+    "workbench.colorTheme": "Material Theme Darker",
+    
+    // python设置
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.formatting.provider": "yapf",
+    "python.pythonPath": "E:\\python3.7.1\\python.exe",
+    "files.insertFinalNewline": true,
+    "python.autoComplete.extraPaths": [
+        　　　　"E:/python/Lib/site-packages",
+        　　　　"E:/python/Scripts",
+    ],
+
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "python.jediEnabled": false,
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "java.configuration.checkProjectSettingsExclusions": false,
+    "leetcode.defaultLanguage": "java",
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    
+    "editor.minimap.enabled": false,
+
+    // 解决rg.exe占CPU高的问题
+    "search.followSymlinks": false,
+    "breadcrumbs.enabled": false,
+    "window.zoomLevel": 0,
+    "C_Cpp.updateChannel": "Insiders",
+
+    // 关闭标签预览功能
+    "workbench.editor.enablePreview": false,
+    "editor.renderWhitespace": "none",
+    "vsicons.dontShowNewVersionMessage": true,
+    "extensions.ignoreRecommendations": true,
+
+    //==========================//
+    //=======vim setting========//
+    //==========================//
+    "scrolloff.scrolloff": 5,
+    "editor.lineNumbers": "relative",
+    "vim.leader": " ",
+    "vim.useSystemClipboard": true,
+
+    // search setting 
+    "vim.hlsearch": true,
+    "vim.ignorecase": true,
+    "vim.smartcase": true,
+    "vim.incsearch": true,
+
+    "vim.insertModeKeyBindings": [
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {"before": ["J"], "after": ["j","j","j","j"]},
+        {"before": ["K"], "after": ["k","k","k","k"]},
+        {"before": ["s"], "after": [""]},
+        {"before": ["leader","enter"], "commands": [":nohlsearch"]},
+
+        //split setting
+        {"before": ["leader","s","h"], "commands": [":set splitright",":vsplit"]},
+        {"before": ["leader","s","l"], "commands": [":set splitright", ":vsplit"]},
+        {"before": ["leader","s","j"], "commands": [":set nosplitright",":split"]},
+        {"before": ["leader","s","k"], "commands": [":set nosplitright",":split"]},
+        {"before": ["leader","l"], "after": ["C-w", "l"]},
+        {"before": ["leader","h"], "after": ["C-w", "h"]},
+        {"before": ["leader","j"], "after": ["C-w", "j"]},
+        {"before": ["leader","k"], "after": ["C-w", "k"]},
+
+        //tab setting
+        {"before": ["t","h"], "commands": [":tabp"]},
+        {"before": ["t","l"], "commands": [":tabn"]},
+        {"before": ["t","o"], "commands": [":tabo"]},
+        {"before": ["t","a"], "commands": ["workbench.action.closeAllEditors"]},
+        {"before": ["t","c"], "commands": ["workbench.action.closeActiveEditor"]},
+        {"before": ["t","r"], "commands": ["workbench.action.reopenClosedEditor"]},
+
+        //the setting about deleting
+        {"before": ["leader","x"], "after": ["\"", "_", "x"]},
+        {"before": ["leader","d","d"], "after": ["\"", "_", "d","d"]},
+        {"before": ["leader","D"], "after": ["\"", "_", "D"]},
+
+        // the setting about bookmarks
+        {"before": ["<leader>", "m"],"commands": ["bookmarks.toggle"]},
+        {"before": ["<leader>", "b"],"commands": ["bookmarks.list"]},
+
+        // the setting about deleting
+        {"before":["<leader>", "x"], "after":["\"", "_", "x"]},
+        {"before":["<leader>", "d", "d"], "after":["\"", "_", "d", "d"]},
+        {"before":["<leader>", "d"], "after":["\"", "_", "d"]},
+        {"before":["<leader>", "D"], "after":["\"", "_", "D"]},
+
+        // Press space and  to jump to the next and edit it
+        {"before":["<leader>", ";", ";"], "after":["a", "<", "+", "+", ">", "<Esc>", "/", "<", "+", "+", ">", "<CR>"]},
+        {"before":["<leader>", "<leader>"], "after":["<Esc>", "/", "<", "+", "+", ">", "<CR>", ":", "n", "o", "h", "l", "s", "e", "a", "r", "c", "h", "<CR>", "\"", "_", "c", "4", "l"]},
+
+        // copy and deleting without line break
+        {"before":["<leader>", ";", "d"], "after":["C-v", "$", "h", "d"]},
+        {"before":["<leader>", ";", "y"], "after":["C-v", "$", "h", "y"]},
+
+        // navigation setting
+        {"before":["g", "f"], "commands":["workbench.action.openRecent"]},
+        {"before":["g", "a"], "commands":["workbench.action.showCommands"]},
+
+        // select all
+        {"before":["<leader>", "a"], "after":["g", "g", "V", "G"]},
+         
+        // formatDocument
+        {"before": ["<leader>", "f"], "commands":["editor.action.formatDocument"]},
+
+        // undo and redo
+        {"before": ["u"], "commands":["undo"]},
+        {"before": ["U"], "commands":["redo"]}
+
+        
+    ],
+    "vim.handleKeys": {"<C-a>": true, "<C-f>": false},
+    "terminal.integrated.fontSize": 13,
+    "editor.tabCompletion": "on",
+    "editor.insertSpaces": false,
+    "files.autoSaveDelay": 100,
+    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\wsl.exe"
+
+}

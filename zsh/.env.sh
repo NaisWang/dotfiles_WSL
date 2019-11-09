@@ -15,7 +15,6 @@ alias np+='nohup notepad++'
 alias tp='nohup Typora.ext'
 alias ab='nohup Acrobat &'
 alias cpd="cygpath -w $(pwd) | sed 's/\\\/\\//g' | tr -d \\\n | clip"
-alias rm="remove.sh"
 alias workon=". workon.sh"
 alias sc="screenfetch"
 alias ra="ranger"
