@@ -11,6 +11,14 @@ gvim=/mnt/e/gvim/
 ImageGlass=/mnt/e/ImageGlass/ImageGlass/
 export PATH=/bin:$PATH:${Acrobat}${notepad}:${typora}:${Office}:${potplay}:${quickLook}:${zip7}:${fd}:${chrome}:${gvim}:${ImageGlass}
 
+
+# the setting of fzf
+export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
+export FZF_DEFAULT_OPTS="--layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+
+# ===
+# === alias setting
+# ===
 alias np+='nohup notepad++'
 alias tp='nohup Typora.ext'
 alias ab='nohup Acrobat &'
@@ -20,6 +28,7 @@ alias sc="screenfetch"
 alias ra="ranger"
 alias image="ImageGlass_sh.sh"
 alias gvim="gvim.sh"
+alias rm="trash-put"
 
 alias gje="cd /mnt/f/javaEE_project"
 alias gjs="cd /mnt/f/javaSE_project"
@@ -40,3 +49,6 @@ alias gmp="cd /mnt/f/temporary"
 alias gbd="cd /mnt/f/BaiduNetdiskDownload"
 alias gvn="cd /mnt/f/vnote"
 alias gvi="cd /mnt/f/envs"
+alias cls="colorls"
+alias cll="colorls -lA --sd"
+

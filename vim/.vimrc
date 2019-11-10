@@ -203,7 +203,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'itchyny/vim-cursorword'  " Underline the word under the cursor
 Plug 'mhinz/vim-startify' "  The fancy start screen for Vim.
 Plug 'jiangmiao/auto-pairs'
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 " Plug 'w0rp/ale'
 
 " Git
@@ -232,7 +232,7 @@ colorscheme gruvbox
 " colorscheme jellybeans
 set bg=dark                       
 set guioptions=                   " Get rid of the scrollbar on both sides 
-set guifont=Source\ Code\ Pro:h10
+" set guifont=Source\ Code\ Pro:h10
 
 set wildmenu 
 set cursorline
@@ -305,7 +305,7 @@ nmap bc  :bdelete <CR>
  
 " Press space and to jump to the next and edit it
 nnoremap ;; a<++><Esc>/<++><CR>
-map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
 :match StatusLineTermNC /<++>/
 
 " the setting about deleting

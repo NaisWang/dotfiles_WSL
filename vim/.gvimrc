@@ -19,7 +19,7 @@
 set autowriteall
 
 " My Snippets
-source ~/snippits.vim
+" source ~/snippits.vim
 
 set encoding=utf-8
 
@@ -225,7 +225,7 @@ set guicursor+=a:blinkon0
 " =========================="
 "		operation			"
 " =========================="
-map <LEADER>r :e $MYVIMRC<CR>
+map <LEADER>r :e C:/Users/Administrator/_vimrc<CR>
 map <LEADER>R :source %<CR>
 
 " split setting

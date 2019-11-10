@@ -175,7 +175,7 @@ Return
 ^+`::
     WinGet, id, ID, A
     preWindowID:=id
-    Run, mintty.exe,,,PId
+    Run, open-wsl.exe,,,PId
 	WinWait, ahk_exe mintty.exe
     WinActivate, ahk_exe mintty.exe
     WinGet, active_id, ID, A
@@ -365,7 +365,7 @@ Return
 Return
 
 ;按下win + n ，将窗口变小
-#n::
+#+m::
     WinGet, active_id, ID, A
 	if(MinttyID = active_id){
 		WinMove, ahk_id %active_id%,, 0, 0,1920,666
@@ -447,12 +447,28 @@ Return
     CoordMode, Mouse, Screen
 	Click, 40, 0
 Return
+#,::
+    CoordMode, Mouse, Screen
+	Click, 40, 0
+Return
+!,::
+    CoordMode, Mouse, Screen
+	Click, 40, 0
+Return
 
 !2::
     CoordMode, Mouse, Screen
 	Click, 1720,0
 Return
 #2::
+    CoordMode, Mouse, Screen
+	Click, 1720,0
+Return
+#.::
+    CoordMode, Mouse, Screen
+	Click, 1720,0
+Return
+!.::
     CoordMode, Mouse, Screen
 	Click, 1720,0
 Return
@@ -548,7 +564,7 @@ Open(t,p)
 #^i::Open("idea64.exe","E:/idea/IntelliJ IDEA 2019.2.1/bin/idea64.exe") return
 #^x::Open("Xshell.exe","E:/xmanager6.cn/Xshell 6/Xshell.exe") return
 #^u::Open("Postman.exe","E:/Postman/Postman/app-7.1.1/Postman.exe") return
-#^v::Open("VNote.exe","E:/VNote/VNote.exe") return
+#^n::Open("VNote.exe","E:/VNote/VNote.exe") return
 #^s::Open("webstorm64.exe","E:/webstrom/WebStorm 2019.2.3/bin/webstorm64.exe") return
 #^o::Open("chrome.exe","C:/Program Files (x86)/Google/Chrome/Application/chrome.exe") return
 #^f::Open("firefox.exe","E:/Mozilla Firefox/firefox.exe") return
@@ -564,7 +580,7 @@ Open(t,p)
 #i::activate("idea64.exe") return
 ;#x::activate("Xshell.exe") return
 #u::activate("Postman.exe") return
-#v::activate("VNote.exe") return
+#n::activate("VNote.exe") return
 #s::activate("webstorm64.exe") return
 #o::activate("chrome.exe") return
 #f::activate("firefox.exe") return
