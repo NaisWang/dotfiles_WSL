@@ -30,6 +30,7 @@ set autochdir " automatically switch directory based on file
 let &t_ut='' " make the colour matching more normal
 noremap s <nop>
 noremap B b
+map U <C-r>
 
 " set wrap
 " set mouse=a " Support mouse operation
@@ -189,8 +190,7 @@ colorscheme gruvbox
 " colorscheme jellybeans
 set bg=dark                       
 set guioptions=                   " Get rid of the scrollbar on both sides 
-"set guifont=DroidSansMono_Nerd_Font:h11 
-set guifont=Source\ Code\ Pro:h10
+set guifont=SauceCodePro\ NF:h10
 
 set wildmenu 
 
@@ -276,14 +276,14 @@ map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
 
 " the setting about deleting
 noremap  <leader>x  "_x
-nnoremap <leader>dd "_dd
-nnoremap <leader>d  "_d
+noremap <leader>dd "_dd
+noremap <leader>di  "_di
 vnoremap <leader>d  "_d
 nnoremap <leader>D  "_D
 
 " copy and deleting without line break
-nnoremap ;d ^v$hd
-nnoremap ;y ^v$hy
+nnoremap ;d <c-v>$hd
+nnoremap ;y <c-v>$hy
 
 "======================================="
 "           plugin setting              "

@@ -12,7 +12,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 init()
 gvimInit()
 
-global windows := {}
+global windows :={}
 ; The values has tow values-10,20,11,21
 ; 10: left and not mir
 ; 20: right and not mir
@@ -24,6 +24,8 @@ global lastY :={}
 global lastW :={}
 global lastH :={}
 
+global specialPro := {"WINWORD.EXE": 1,"Code.exe": 1,"ONENOTE.EXE": 1,"EXCEL.EXE": 1,"OUTLOOK.EXE": 1,"wps.exe": 1,"PotPlayerMini64.exe": 1,"Typora.exe": 1, "XMind\ ZEN.exe": 1}
+
 global leftWindowWidth := 0
 global rightWindowWidth := 0
 
@@ -32,6 +34,7 @@ global preWindowID:=1
 global showflag := 0
 
 global flag:=1
+
 ;======================================================
 ; 在metty.exe下将原本的shift+insert复制快捷键改成ctrl+v
 ;=======================================================
@@ -60,6 +63,21 @@ gvimInit(){
 ;#IfWinActive ahk_exe VNote.exe
 ;	::img::<img width="500px" src=""/>{Left 3}{Esc}
 ;#IfWinActive
+
+;======================================================
+; 在Acrobat下有关热键
+;=======================================================
+#IfWinActive ahk_exe Acrobat.exe
+	^m:: 
+		send,{ctrl down}h 
+	Return 
+	!m:: 
+		send,{ctrl down}h 
+	Return 
+	!p:: 
+		send, ^+{F5}
+	Return
+#IfWinActive
 
 
 ;==========================================================
@@ -113,6 +131,7 @@ Return
 ~alt up::
     flag:=1
 Return
+
 
 !+j::
  Send {Down 3}
@@ -222,12 +241,13 @@ return
     WinGet, id, ID, A
     WinGet, OutputVar, ProcessName, A
 	WinGetPos,X,Y,W,H,ahk_id %id%
-	lastX[id] := X
-	lastY[id] := Y
-	lastW[id] := W
-	lastH[id] := H
-
-	if OutputVar contains WINWORD.EXE,Code.exe,ONENOTE.EXE,EXCEL.EXE,OUTLOOK.EXE,wps.exe,PotPlayerMini64.exe,Typora.exe
+	if ( W<=1910 || H <= 1070){
+		lastX[id] := X
+		lastY[id] := Y
+		lastW[id] := W
+		lastH[id] := H
+	}
+	if(specialPro[OutputVar] = 1)
 	{
 		WinMove,ahk_id %id%,,0,0,1922, 1080
 	}else{
@@ -250,7 +270,7 @@ return
     WinGet, id, ID, A
     WinGet, OutputVar, ProcessName, A
 	WinGetPos,X,Y,W,H,ahk_id %id%
-	if OutputVar contains WINWORD.EXE,Code.exe,ONENOTE.EXE,EXCEL.EXE,OUTLOOK.EXE,wps.exe,PotPlayerMini64.exe,Typora.exe
+	if(specialPro[OutputVar] = 1)
 	{
 		WinMove,ahk_id %id%,,%X%,0,%W%, 540
 	}else{
@@ -276,7 +296,7 @@ movetoLeft(OutputVar,OutputVar1){
 		rightWindowWidth1 := leftWindowWidth+3
 		WinMove,ahk_id %OutputVar1%,,0,0,%rightWindowWidth1%,1080
 	}else{
-		if OutputVar contains WINWORD.EXE,Code.exe,ONENOTE.EXE,EXCEL.EXE,OUTLOOK.EXE,wps.exe,PotPlayerMini64.exe,Typora.exe
+		if(specialPro[OutputVar] = 1)
 		{
 			windows[OutputVar1] := 11
 			rightWindowWidth1 := leftWindowWidth+3
@@ -317,7 +337,7 @@ movetoRight(OutputVar, OutputVar1){
 		rightWindowWidth1 := rightWindowWidth - 2
 		WinMove,ahk_id %OutputVar1%,,%leftWindowWidth1%,0,%rightWindowWidth1%,1080
 	}else{
-		if OutputVar contains WINWORD.EXE,Code.exe,ONENOTE.EXE,EXCEL.EXE,OUTLOOK.EXE,wps.exe,PotPlayerMini64.exe,Typora.exe
+		if(specialPro[OutputVar] = 1)
 		{
 			windows[OutputVar1] := 21
 			leftWindowWidth1 := leftWindowWidth + 2
@@ -540,10 +560,11 @@ Open(t,p)
 {
   if activate(t)==0
   {
+	MsgBox "ff"
 	WinGetPos,X,Y,W,H,A
 	WinGet, OutputVar2, ProcessName, A
 	WinGet, OutputVar3, ID, A
-    Run, %p%,,,PId
+	Run, %p%,,,PId
 	WinWait, ahk_exe %t%
     WinActivate, ahk_exe %t%
     WinGet, OutputVar, ProcessName, A
@@ -572,6 +593,7 @@ Open(t,p)
 #^a::Open("studio64.exe","E:/android-studio/android-studio-ide-191/bin/studio64.exe") return
 ;#^r::Open("Typora.exe","E:/typora/Typora/Typora.exe") return
 
+
 #c::activate("Code.exe") return
 #w::activate("WINWORD.EXE") return
 #t::activate("POWERPNT.EXE") return
@@ -586,4 +608,5 @@ Open(t,p)
 #f::activate("firefox.exe") return
 #y::activate("pycharm64.exe") return
 #a::activate("studio64.exe") return
+
 ;#r::activate("Typora.exe") return

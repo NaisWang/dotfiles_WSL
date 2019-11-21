@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+ZSH_DISABLE_COMPFIX=true
+
 # TERM theme setting
 export TERM=xterm-256color
 
@@ -84,7 +86,10 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git virtualenv vi-mode)
+plugins=(git 
+		virtualenv
+	   	zsh-syntax-highlighting
+		)
 
 source $ZSH/oh-my-zsh.sh
 

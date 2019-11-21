@@ -5,11 +5,12 @@ Office=/mnt/c/"Program Files"/"Microsoft Office"/root/Office16
 potplay=/mnt/e//PotPlayer
 quickLook=/mnt/c/"Program Files"/WindowsApps/21090PaddyXu.QuickLook_3.6.5.0_neutral__egxr34yet59cg/Package
 fd=/mnt/c/Users/Administrator/scoop/apps/fd/7.3.0
+code=/mnt/e/vscode/"Microsoft VS Code"
 zip7=/mnt/e/7zip/7-Zip
 chrome=/mnt/c/"Program Files (x86)"/Google/Chrome/Application
 gvim=/mnt/e/gvim/
 ImageGlass=/mnt/e/ImageGlass/ImageGlass/
-export PATH=/bin:$PATH:${Acrobat}${notepad}:${typora}:${Office}:${potplay}:${quickLook}:${zip7}:${fd}:${chrome}:${gvim}:${ImageGlass}
+export PATH=/bin:$PATH:${Acrobat}:${notepad}:${typora}:${Office}:${potplay}:${quickLook}:${zip7}:${fd}:${chrome}:${gvim}:${ImageGlass}:${code}
 
 
 # the setting of fzf
@@ -49,6 +50,6 @@ alias gmp="cd /mnt/f/temporary"
 alias gbd="cd /mnt/f/BaiduNetdiskDownload"
 alias gvn="cd /mnt/f/vnote"
 alias gvi="cd /mnt/f/envs"
-alias cls="colorls"
-alias cll="colorls -lA --sd"
+alias lsc="colorls"
+alias llc="colorls -lA --sd"
 

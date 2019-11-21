@@ -25,7 +25,7 @@
     "files.autoSave": "afterDelay",
     
     // 主题设置
-    "editor.fontFamily": "Source Code Pro, 'Courier New', monospace",
+    "editor.fontFamily": "SauceCodePro NF, 'Courier New', monospace",
     "workbench.colorTheme": "Material Theme Darker",
     
     // python设置
@@ -158,6 +158,6 @@
     "editor.tabCompletion": "on",
     "editor.insertSpaces": false,
     "files.autoSaveDelay": 100,
-    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\wsl.exe"
-
+    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\wsl.exe",
+    "terminal.integrated.shell.linux": "/usr/bin/zsh",
 }

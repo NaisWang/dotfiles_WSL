@@ -44,7 +44,7 @@ func! GetSelectedText_y()
 endfunc
 
 func! DeleteSelectedText_d()
-    normal gv"xd
+    normal gv"xc
     let result = getreg("x")
     return result
 endfunc
@@ -67,13 +67,15 @@ func! DeleteSelectedText_D()
     return result
 endfunc
 
-nnoremap <silent> ;yy :call system('clip.exe', GetSelectedText_yy())<CR>
-vnoremap <silent> ;y :call system('clip.exe', GetSelectedText_y())<CR>
-vnoremap <silent> ;x :call system('clip.exe', GetSelectedText_y())<CR>gvx
-vnoremap <silent> ;d :call system('clip.exe', DeleteSelectedText_d())<CR>
-nnoremap <silent> ;dd :call system('clip.exe', DeleteSelectedText_dd())<CR>
+nnoremap <silent> ;yy  :call system('clip.exe', GetSelectedText_yy())<CR>
+vnoremap <silent> ;y   :call system('clip.exe', GetSelectedText_y())<CR>
+nnoremap <silent> ;yiw viw:call system('clip.exe', GetSelectedText_y())<CR>
+vnoremap <silent> ;x   :call system('clip.exe', GetSelectedText_y())<CR>gvx
+vnoremap <silent> ;d   :call system('clip.exe', DeleteSelectedText_d())<CR>
+nnoremap <silent> ;diw viw:call system('clip.exe', DeleteSelectedText_d())<CR>
+nnoremap <silent> ;dd  :call system('clip.exe', DeleteSelectedText_dd())<CR>
 nnoremap <silent> ;diw :call system('clip.exe', DeleteSelectedText_diw())<CR>
-nnoremap <silent> ;D :call system('clip.exe', DeleteSelectedText_D())<CR>
+nnoremap <silent> ;D   :call system('clip.exe', DeleteSelectedText_D())<CR>
 
 nnoremap <silent> ;p :r !paste.exe<CR>i<bs><esc>l
 
@@ -89,9 +91,6 @@ noremap s <nop>
 " set listchars=tab:▸\ ,trail:▫
 
 set langmenu=zh_CN.UTF-8          "设置菜单语言
-source $VIMRUNTIME/delmenu.vim    "导入删除菜单脚本，删除乱码的菜单
-source $VIMRUNTIME/menu.vim       "导入正常的菜单脚本
-" language messages zh_CN.utf-8     "设置提示信息语言
 
 " make the Plugin more compatibility
 set nocompatible
