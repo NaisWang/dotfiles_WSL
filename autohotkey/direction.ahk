@@ -69,16 +69,17 @@ gvimInit(){
 ;=======================================================
 #IfWinActive ahk_exe Acrobat.exe
 	^m:: 
-		send,{ctrl down}h 
+		send, ^h
+		send, {F9}
 	Return 
 	!m:: 
-		send,{ctrl down}h 
+		send, ^h
+		send, {F9}
 	Return 
 	!p:: 
 		send, ^+{F5}
 	Return
 #IfWinActive
-
 
 ;==========================================================
 ;the shortcut key to direction key and  switch windows
@@ -560,7 +561,6 @@ Open(t,p)
 {
   if activate(t)==0
   {
-	MsgBox "ff"
 	WinGetPos,X,Y,W,H,A
 	WinGet, OutputVar2, ProcessName, A
 	WinGet, OutputVar3, ID, A
@@ -608,5 +608,4 @@ Open(t,p)
 #f::activate("firefox.exe") return
 #y::activate("pycharm64.exe") return
 #a::activate("studio64.exe") return
-
 ;#r::activate("Typora.exe") return

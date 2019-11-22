@@ -1,3 +1,6 @@
+# ===
+# === path setting
+# ===
 Acrobat=/mnt/c/"Program Files (x86)"/Adobe/"Acrobat DC"/Acrobat
 notepad=/mnt/e/notepad++
 typora=/mnt/e/typora/Typora
@@ -10,12 +13,8 @@ zip7=/mnt/e/7zip/7-Zip
 chrome=/mnt/c/"Program Files (x86)"/Google/Chrome/Application
 gvim=/mnt/e/gvim/
 ImageGlass=/mnt/e/ImageGlass/ImageGlass/
-export PATH=/bin:$PATH:${Acrobat}:${notepad}:${typora}:${Office}:${potplay}:${quickLook}:${zip7}:${fd}:${chrome}:${gvim}:${ImageGlass}:${code}
-
-
-# the setting of fzf
-export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
-export FZF_DEFAULT_OPTS="--layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+xmind=/mnt/c/"Program Files"/"XMind ZEN"
+export PATH=/bin:$PATH:${Acrobat}:${notepad}:${typora}:${Office}:${potplay}:${quickLook}:${zip7}:${fd}:${chrome}:${gvim}:${ImageGlass}:${code}:${xmind}
 
 # ===
 # === alias setting
@@ -53,3 +52,8 @@ alias gvi="cd /mnt/f/envs"
 alias lsc="colorls"
 alias llc="colorls -lA --sd"
 
+# ===
+# === fzf setting
+# ===
+export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
+export FZF_DEFAULT_OPTS="--layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"

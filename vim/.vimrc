@@ -83,6 +83,9 @@ nnoremap <silent> ;p :r !paste.exe<CR>i<bs><esc>l
 set autochdir " 根据文件自动切换目录
 let &t_ut='' " 使配色更加正常
 noremap s <nop>
+
+map U <C-r>
+
 " set wrap
 " set mouse=a " Support mouse opeartion
 

@@ -118,7 +118,6 @@ nnoremap \v :action ViewBreakpoints<cr>
 nnoremap \m :action Debugger.RemoveAllBreakpoints<cr>
 nnoremap \o :action WebOpenInAction<cr>
 
-
 " method navigation
 " go the method start
 nnoremap [{ :action EditorCodeBlockEnd<CR>:action MethodUp<CR>
@@ -132,3 +131,6 @@ nnoremap [] :action EditorCodeBlockEnd<CR>:action MethodUp<CR>:action MethodUp<C
 nnoremap ]] :action MethodDown<CR>
 " go the next method end
 nnoremap ][ :action MethodDown<CR>:action EditorCodeBlockEnd<CR>
+
+" AceJump
+noremap ss :action AceAction<CR>
