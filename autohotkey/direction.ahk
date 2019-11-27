@@ -188,11 +188,37 @@ Return
 ; ======== Set the delete and backspace shortcut
 ; ========
 !s::
-    Send,{Delete}
+    Send {Delete}
 Return
 
 !q::
-    Send,{Backspace}
+    Send {Backspace}
+Return
+
+; delete entire row
+!+s::
+	send {Home}
+	send +{End}
+    Send {delete}
+Return
+
+; copy entire row
+!+y::
+	send {Home}
+	send +{End}
+    Send ^c
+Return
+
+; delete from current position to begin
+!+x::
+	Send +{Home}
+    Send {Delete}
+Return
+
+; delete from current position to end
+!+d::
+	send +{End}
+	send {Delete}
 Return
 
 
@@ -561,8 +587,8 @@ return
 ; ========
 ; ======== Wheel operation
 ; ========
-!e::MouseClick, WheelDown, , , 2  
-!y::MouseClick, WheelUp, , , 2  
+!^e::MouseClick, WheelDown, , , 2  
+!^y::MouseClick, WheelUp, , , 2  
 
 
 ; ========

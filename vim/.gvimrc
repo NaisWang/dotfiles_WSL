@@ -89,9 +89,6 @@ map <LEADER>sc :set spell!<CR>
 noremap <C-x> hea<C-x>s
 inoremap <C-x> <Esc>hea<C-x>s
 
-" Prevent selecting and pasting from overwriting what you originally copied.
-xnoremap p pgvy
-
 " Keep cursor at the bottom of the visual selection after you yank it.
 vmap y ygv<Esc>
 
@@ -284,6 +281,9 @@ nnoremap <leader>D  "_D
 " copy and deleting without line break
 nnoremap ;d <c-v>$hd
 nnoremap ;y <c-v>$hy
+
+" delete from current to begin
+nnoremap X d^
 
 " ========
 " ======== startify

@@ -37,9 +37,6 @@ nnoremap ;y ^v$hy
 " Keep cursor at the bottom of the visual selection after you yank it.
 vmap y ygv<Esc>
 
-" Prevent selecting and pasting from overwriting what you originally copied.
-xnoremap p pgvy
-
 " split seting
 map sh :set splitright<CR>:vsplit<CR>
 map sl :set nosplitright<CR>:vsplit<CR><C-W>h
