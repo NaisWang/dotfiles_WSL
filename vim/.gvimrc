@@ -89,6 +89,12 @@ map <LEADER>sc :set spell!<CR>
 noremap <C-x> hea<C-x>s
 inoremap <C-x> <Esc>hea<C-x>s
 
+" Prevent selecting and pasting from overwriting what you originally copied.
+xnoremap p pgvy
+
+" Keep cursor at the bottom of the visual selection after you yank it.
+vmap y ygv<Esc>
+
 " delete the all marks in all buffers and refresh the file
 noremap m; :delmarks!<CR>:e<CR>
 
@@ -119,7 +125,6 @@ func! CompileRunGcc()
     exec "MarkdownPreview"
   endif
 endfunc
-
 
 " ========
 " ======== plugin installation

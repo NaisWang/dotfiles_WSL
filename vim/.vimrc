@@ -25,9 +25,7 @@ set autowriteall
 source ~/snippits.vim
 
 set encoding=utf-8
-set backspace=indent,eol,start "使vi可以用退格键删除,默认不能删旧的.
-                               "indent是指可以删除字段缩进,eol是可以通过退格键合并两行,
-                               "start则是可以删除插入前的输入(bs)
+set backspace=indent,eol,start " make vim can use the backspace key to delete
 let mapleader=" "
 set clipboard=unnamedplus
 
@@ -79,9 +77,8 @@ nnoremap <silent> ;D   :call system('clip.exe', DeleteSelectedText_D())<CR>
 
 nnoremap <silent> ;p :r !paste.exe<CR>i<bs><esc>l
 
-
-set autochdir " 根据文件自动切换目录
-let &t_ut='' " 使配色更加正常
+set autochdir " automatically switch directory based on file
+let &t_ut='' " make the colour matching more normal
 noremap s <nop>
 
 map U <C-r>
@@ -93,8 +90,6 @@ map U <C-r>
 " set list
 " set listchars=tab:▸\ ,trail:▫
 
-set langmenu=zh_CN.UTF-8          "设置菜单语言
-
 " make the Plugin more compatibility
 set nocompatible
 filetype on
@@ -103,10 +98,10 @@ filetype plugin on
 filetype plugin indent on
 
 " the tab setting
-set tabstop=4     " 一个tab等于多少空格(ts)
-set shiftwidth=4  " 自动缩进时缩进为4格(sw)
+set tabstop=4     " how many spaces a tab is equal to
+set shiftwidth=4
 set softtabstop=4
-"set expandtab    " 编辑时可以将tab替换为空格(et)
+" set expandtab    "the tab is replaced by spaces 
 
 " the search setting
 set hlsearch
@@ -133,34 +128,6 @@ map K 4k
 map <LEADER>sc :set spell!<CR>
 noremap <C-x> hea<C-x>s
 inoremap <C-x> <Esc>hea<C-x>s
-
-" Compile function
-map <LEADER>c :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-  exec "w"
-  if &filetype == 'c'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'cpp'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'java'
-    exec "!javac %"
-    exec "!time java %<"
-  elseif &filetype == 'sh'
-    :!time bash %
-  elseif &filetype == 'python'
-    set splitright
-    ":vsp
-    ":vertical resize-10
-    :sp
-    :term python3 %
-  elseif &filetype == 'html'
-    exec "!chromium % &"
-  elseif &filetype == 'markdown'
-    exec "MarkdownPreview"
-  endif
-endfunc
 
 " Prevent selecting and pasting from overwriting what you originally copied.
 xnoremap p pgvy
@@ -316,9 +283,6 @@ let g:rbpt_colorpairs = [
     \ ['red',         'firebrick3'],
     \ ]
 
-" 不加入这行, 防止黑色括号出现, 很难识别
-" \ ['black',       'SeaGreen3'],
-
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
@@ -362,13 +326,9 @@ autocmd VimEnter * call ArilineInit()
 " ========
 " ======== fzf.vim
 " ========
-"<Leader>f在当前目录搜索文件
 nnoremap <silent> <Leader>f :Files<CR>
-"<Leader>b切换Buffer中的文件
 nnoremap <silent> <Leader>b :Buffers<CR>
-"<Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
 " nnoremap <silent> <Leader>p :Lines<CR>
-"<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
 nnoremap <silent> <Leader>o :History<CR>
 command! -bang -nargs=* Ag
    \ call fzf#vim#ag(<q-args>,
