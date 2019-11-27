@@ -59,6 +59,7 @@ gvimInit(){
 	Hotkey, ^+v, <gvim>
 }
 
+
 ; ========
 ; ======== the shortcut key for jetbrains
 ; ========
