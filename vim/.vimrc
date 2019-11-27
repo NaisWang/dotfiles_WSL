@@ -5,9 +5,9 @@
 " |_|  |_| |_|      \_/  |___|_|  |_|
 "                                         
 
-" =========================="
-"		startup seting		"
-" =========================="
+" ========
+" ======== startup seting	
+" ========
 "  Auto load for first time uses
 " if empty(glob('~/.config/nvim/autoload/plug.vim'))
 "   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -22,7 +22,7 @@ set autowriteall
 " let g:pydiction_menu_height = 10
 
 " My Snippets
-" source ~/snippits.vim
+source ~/snippits.vim
 
 set encoding=utf-8
 set backspace=indent,eol,start "使vi可以用退格键删除,默认不能删旧的.
@@ -120,12 +120,6 @@ noremap <LEADER><CR> :nohlsearch<CR>
 set foldmethod=indent
 set foldlevel=99
 
-" https://superuser.com/questions/302186/vim-scrolls-very-slowly-when-a-line-is-too-long
-" Syntax coloring lines that are too long just slows down the world
-set synmaxcol=1000
-set ttyfast    " u got a fast terminal
-set ttyscroll=3
-set lazyredraw " to avoid scrolling problems
 
 " undo/redo persistence
 set undofile 
@@ -174,12 +168,12 @@ xnoremap p pgvy
 " Keep cursor at the bottom of the visual selection after you yank it.
 vmap y ygv<Esc>
 
-" =========================="
-"		plugin installation	"
-" =========================="
+
+" ========
+" ======== plugin installation
+" ========
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
 
 " theme
 Plug 'morhetz/gruvbox' 
@@ -187,9 +181,6 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'kshenoy/vim-signature'
-Plug 'mbbill/undotree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -198,43 +189,22 @@ Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
 Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-surround'
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'tacahiroy/ctrlp-funky'
-Plug 'kien/rainbow_parentheses.vim'
-" Plug 'ycm-core/YouCompleteMe'
+
 Plug 'itchyny/vim-cursorword'  " Underline the word under the cursor
+
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'mhinz/vim-startify' "  The fancy start screen for Vim.
 Plug 'jiangmiao/auto-pairs'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'w0rp/ale'
-
-" Git
-" Plug 'tpope/vim-fugitive'
-" Plug 'mhinz/vim-signify'
-" Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
-
-" HTML, CSS, JavaScript, PHP, JSON, etc.
-Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-Plug 'elzr/vim-json'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'mattn/emmet-vim'
-
-" Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
 call plug#end()
 
 
-" =========================="
-"		GUI setting			"
-" =========================="
+" ========
+" ======== GUI setting
+" ========
 colorscheme gruvbox
 " colorscheme jellybeans
-set bg=dark                       
-set guioptions=                   " Get rid of the scrollbar on both sides 
-" set guifont=Source\ Code\ Pro:h10
+set bg=dark
 
 set wildmenu 
 set cursorline
@@ -245,21 +215,14 @@ syntax on
 
 set smartindent
 
-" auto-completion
-" inoremap ' ''<ESC>i
-" inoremap " ""<ESC>i
-" inoremap ( ()<ESC>i
-" inoremap [ []<ESC>i
-" inoremap { {<CR>}<ESC>O
-
 " the model of cursor
 :autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
 
 
-" =========================="
-"		operation			"
-" =========================="
+" ========
+" ======== operation
+" ========
 map <LEADER>r :e $MYVIMRC<CR>
 map <LEADER>R :source %<CR>
 
@@ -318,12 +281,9 @@ vnoremap <leader>d  "_d
 nnoremap <leader>D  "_D
 
 
-"======================================="
-"           plugin setting              "
-"======================================="
-" =========================="
-"		NERDTree			"
-" =========================="
+" ========
+" ======== NERDTree
+" ========
 map tt :NERDTreeToggle<CR>
 map tn :NERDTreeFind<CR>
 let NERDTreeMapOpenInTab = "o"
@@ -335,56 +295,9 @@ let NERDTreeIgnore = [
             \ ]
 
 
-" =========================="
-"	nerdtree-git-plugin		"
-" =========================="
-" let g:NERDTreeShowIgnoredStatus = 1
-" let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
-
-" =========================="
-"			ale				"
-" =========================="
-"let g:ale_sign_column_always = 1 
-"let g:ale_set_highlights = 0
-""自定义error和warning图标
-"let g:ale_sign_error = '✗'
-"let g:ale_sign_warning = '⚡'
-""在vim自带的状态栏中整合ale
-"let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-""显示Linter名称,出错或警告等相关信息
-"let g:ale_echo_msg_error_str = 'E'
-"let g:ale_echo_msg_warning_str = 'W'
-"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-""打开文件时不进行检查
-"let g:ale_lint_on_enter = 0
-""普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-"nmap , <Plug>(ale_previous_wrap)
-"nmap . <Plug>(ale_next_wrap)
-""<Leader>s触发/关闭语法检查
-"nmap <Leader>s :ALEToggle<CR>
-""<Leader>d查看错误或警告的详细信息
-"nmap <Leader>d :ALEDetail<CR>
-""使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
-"let g:ale_linters = {
-"\   'c++': ['clang'],
-"\   'c': ['clang'],
-"\   'python': ['pylint'],
-"\}
-
-" }}}
-" =========================="
-"	rainbow-parentheses-vim	"
-" =========================="
+" ========
+" ======== rainbow-parentheses-vim
+" ========
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -414,96 +327,24 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 
-" =========================="
-"		vim-signiture		"
-" =========================="
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "dm-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "dm/",
-        \ 'PurgeMarkers'       :  "dm?",
-        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevLineAlpha'  :  "",
-        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevSpotAlpha'  :  "",
-        \ 'GotoNextLineByPos'  :  "",
-        \ 'GotoPrevLineByPos'  :  "",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "",
-        \ 'GotoPrevMarker'     :  "",
-        \ 'GotoNextMarkerAny'  :  "",
-        \ 'GotoPrevMarkerAny'  :  "",
-        \ 'ListLocalMarks'     :  "m/",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
 
-
-" =========================="
-"		MarkdownPreview		"
-" =========================="
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 1
-let g:mkdp_refresh_slow = 0
-let g:mkdp_command_for_global = 0
-let g:mkdp_open_to_the_world = 0
-let g:mkdp_open_ip = ''
-let g:mkdp_echo_preview_url = 0
-let g:mkdp_browserfunc = ''
-let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1
-    \ }
-let g:mkdp_markdown_css = ''
-let g:mkdp_highlight_css = ''
-let g:mkdp_port = ''
-let g:mkdp_page_title = '「${name}」'
-
-
-" =========================="
-"      vim-table-mode       "
-" =========================="
-map <LEADER>tm :TableModeToggle<CR>
-
-
-" =========================="
-"		Undotree            "
-" =========================="
-let g:undotree_DiffAutoOpen = 1
-map L :UndotreeToggle<CR>
-
-
-" =========================="
-"		TagbarToggle		"
-" =========================="
-nmap <M-o> :TagbarToggle<CR>
-
-
-" =========================="
-"		Vim-Easy-Align		"
-" =========================="
+" ========
+" ======== Vim-Easy-Align
+" ========
 nmap <LEADER>a <Plug>(EasyAlign)
 vmap <LEADER>a <Plug>(EasyAlign)
 
 
-" =========================="
-"		vim-commentary		"
-" =========================="
+" ========
+" ======== vim-commentary
+" ========
 autocmd FileType python,shell,coffee set commentstring=#\ %s
 autocmd FileType java,c,cpp set commentstring=//\ %s
 
 
-" =========================="
-"		vim-airline 		"	
-" =========================="
+" ========
+" ======== vim-airline
+" ========
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#tabline#enabled = 1
@@ -518,9 +359,9 @@ endfunction
 autocmd VimEnter * call ArilineInit()
 
 
-" =========================="
-"		fzf.vim				"
-" =========================="
+" ========
+" ======== fzf.vim
+" ========
 "<Leader>f在当前目录搜索文件
 nnoremap <silent> <Leader>f :Files<CR>
 "<Leader>b切换Buffer中的文件
@@ -537,9 +378,9 @@ command! -bang -nargs=* Ag
 nnoremap <silent> <Leader>A :Ag<CR>
 
 
-" =========================="
-"		neocomplete		    "
-"==========================="
+" ========
+" ======== neocomplete
+" ========
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
@@ -619,41 +460,3 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
-
-" =========================="
-"		ctrlP				"
-"==========================="
-" let g:ctrlp_map = '<leader>p'
-" let g:ctrlp_cmd = 'CtrlP'
-" 查看最近打开的文件
-" map <leader>f :CtrlPMRU<CR>
-" <Leader>b显示缓冲区文件，并可通过序号进行跳转
-" nmap <Leader>b :CtrlPBuffer<CR>
-" let g:ctrlp_custom_ignore = {
-"     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-"     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-"     \ }
-" let g:ctrlp_working_path_mode=0
-" let g:ctrlp_match_window_bottom=1
-" let g:ctrlp_max_height=15
-" let g:ctrlp_match_window_reversed=0
-" let g:ctrlp_mruf_max=500
-" let g:ctrlp_follow_symlinks=1
-" 调用ag进行搜索提升速度，同时不使用缓存文件
- " if executable('ag')
- "   set grepprg=ag\ --nogroup\ --nocolor
- "   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
- "   let g:ctrlp_use_caching = 0
- " endif
-
-
-" =========================="
-"		ctrlp-funky			"
-"==========================="
-" 进入当前文件的函数列表搜索
-" nnoremap <Leader>fu :CtrlPFunky<Cr> 
-" 搜索当前光标下单词对应的函数
-" nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-" let g:ctrlp_funky_syntax_highlight = 1
-" let g:ctrlp_extensions = ['funky']

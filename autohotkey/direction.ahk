@@ -35,9 +35,9 @@ global showflag := 0
 
 global flag:=1
 
-;======================================================
-; 在metty.exe下将原本的shift+insert复制快捷键改成ctrl+v
-;=======================================================
+; ========
+; ======== Replace the shortcut key shift-insert with ctrl-V in the mintty.exe
+; ========
 <past>:
     send, +{Insert}
 return 
@@ -46,9 +46,9 @@ init(){
     Hotkey, ^+v, <past> 
 }
 
-;======================================================
-; 在gvim.exe下将原本的shift+insert复制快捷键改成ctrl+v
-;=======================================================
+; ========
+; ======== Replace the shortcut key shift-insert with ctrl-V in the gvim.exe
+; ========
 <gvim>:
 	send, +{Insert}
 return
@@ -57,16 +57,10 @@ gvimInit(){
 	Hotkey, ^+v, <gvim>
 }
 
-;======================================================
-; 在vnote下有关热键, 使用执行热键时，需要加前缀空格
-;=======================================================
-;#IfWinActive ahk_exe VNote.exe
-;	::img::<img width="500px" src=""/>{Left 3}{Esc}
-;#IfWinActive
 
-;======================================================
-; 在Acrobat下有关热键
-;=======================================================
+; ========
+; ======== the shortcut key in the Acrobat
+; ========
 #IfWinActive ahk_exe Acrobat.exe
 	^m:: 
 		send, ^h
@@ -79,12 +73,35 @@ gvimInit(){
 	!p:: 
 		send, ^+{F5}
 	Return
+	!w::
+		send, ^w
+	Return
 #IfWinActive
 
-;==========================================================
-;the shortcut key to direction key and  switch windows
-;==========================================================
 
+; ========
+; ======== the shortcut key in the window search
+; ========
+#IfWinActive ahk_exe SearchUI.exe
+	::d:: documents:
+	::f:: folders:
+	::v:: videos:
+#IfWinActive
+
+
+; ========
+; ======== the shortcut key in the chrome
+; ========
+#IfWinActive ahk_exe chrome.exe
+	!w::
+		send, ^w
+	Return
+#IfWinActive
+
+
+; ========
+; ======== the shortcut key to direction key and  switch windows
+; ========
 ~!~tab::
     flag:=0
 Return
@@ -166,9 +183,10 @@ Return
  Send {PgDn}
 Return
 
-;=============================================================
-;Set the delete and backspace shortcut
-;=============================================================
+
+; ========
+; ======== Set the delete and backspace shortcut
+; ========
 !s::
     Send,{Delete}
 Return
@@ -177,9 +195,10 @@ Return
     Send,{Backspace}
 Return
 
-;==============================================================
-;the shortcut key to select words
-;==============================================================
+
+; ========
+; ======== the shortcut key to select words
+; ========
 !^+h::
     send,{ctrl down}{shift down}{left} 
 Return
@@ -188,10 +207,10 @@ Return
     send,{ctrl down}{shift down}{right} 
 Return
 
-;===========================================================================
-;Set the 'metty.exe' to show and close automatically at the top
-;===========================================================================
 
+; ========
+; ======== Set the 'metty.exe' to show and close automatically at the top
+; ========
 ^+`::
     WinGet, id, ID, A
     preWindowID:=id
@@ -224,20 +243,22 @@ Return
 	WinActivate, ahk_id %MinttyID%
 Return
 
-;===============================================================================
-;用来修改win10默认的窗口快捷键，使左手可以单手操作
-;===============================================================================
-;按下ctrl + win + a等于按下ctrl + win +  左方向键
+; ========
+; ======== window operation
+; ========
 ^#h::
     send, {lwin down}{ctrl down}{left}
 return
 
-;按下ctrl + win + l等于按下ctrl + win +  右方向键
 ^#l::
     send, {lwin down}{ctrl down}{right}
 return
 
-;按下win + m ，将窗口最大化，接下来的按键都是窗口缩放操作
+#8::
+    WinGet, OutputVar, ProcessName, A
+	MsgBox %OutputVar%
+return
+
 #m::
     WinGet, id, ID, A
     WinGet, OutputVar, ProcessName, A
@@ -285,7 +306,6 @@ return
 	WinMove,ahk_id %id%,,%X%,540,%W%, 540
 return
 
-;按下win + h ，将窗口向左移动
 movetoLeft(OutputVar,OutputVar1){
 	if(leftWindowWidth = 0){
 		leftWindowWidth := 960
@@ -321,7 +341,6 @@ return
 	WinClose, A
 return
 
-;按下win + l ，将窗口向右移动
 ; OutputVar: ProcessName
 ; OutputVar1: id
 movetoRight(OutputVar, OutputVar1){
@@ -385,7 +404,7 @@ Return
 	WinActivate, ahk_id %active_id_now%
 Return
 
-;按下win + n ，将窗口变小
+; minimize window
 #+m::
     WinGet, active_id, ID, A
 	if(MinttyID = active_id){
@@ -398,9 +417,9 @@ Return
 	}
 return
 
-;=====================================================
-; window manager
-;=====================================================
+; ======== 
+; ========  window size manager
+; ======== 
 ;move the window'boundary left to change window size
 +#h::
 	WinGetPos,X,Y,W,H,A
@@ -457,9 +476,10 @@ Return
 	}
 Return
 
-;=====================================================
-;Activate windows left,right, down and up.
-;=====================================================
+
+; ========
+; ======== Activate windows left,right, down and up.
+; ========
 !1::
     CoordMode, Mouse, Screen
 	Click, 40, 0
@@ -512,9 +532,9 @@ Return
 	Click, 1720, 555
 Return
 
-;=====================================================
-;使有道云mini输入框得到焦点
-;=====================================================
+; ========
+; ======== let the youdao get the focus
+; ========
 !^z::
 	IfWinNotExist, ahk_class YdMiniModeWndClassName
 	{
@@ -524,29 +544,30 @@ Return
     WinGetPos,X,Y,W,H,ahk_class YdMiniModeWndClassName
     X:=X+5
     Y:=Y+5
-    CoordMode, Mouse, Screen  ; 把光标移动是相对于屏幕坐标的位置.
-    MouseMove, %X%,%Y% ; 如果不将光标移动有道云mini窗口上的化，会导致无法输入 
+    CoordMode, Mouse, Screen
+    MouseMove, %X%,%Y%
     WinActivate, ahk_class YdMiniModeWndClassName
 Return
 
-;=====================================================
-; Disable the win
-;=====================================================
+; ========
+; ======== Disable the win key
+; ========
 ~LWin::Send {Bind}{vk07}
 #`::
    Send {RWin} 
 return
 
 
-;=====================================================
-; Wheel operation
-;=====================================================
+; ========
+; ======== Wheel operation
+; ========
 !e::MouseClick, WheelDown, , , 2  
 !y::MouseClick, WheelUp, , , 2  
 
-;=====================================================
-; Open or use software quickly
-;=====================================================
+
+; ========
+; ======== Open or use software quickly
+; ========
 activate(t)
 {
   IfWinExist, ahk_exe %t%

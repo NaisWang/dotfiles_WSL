@@ -5,9 +5,9 @@
 " |_|  |_| |_|    \____|  \_/  |___|_|  |_|
 "                                         
 
-" =========================="
-"		startup seting		"
-" =========================="
+" ========
+" ======== startup seting	
+" ========
 "  Auto load for first time uses
 " if empty(glob('~/.config/nvim/autoload/plug.vim'))
 "   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -19,7 +19,7 @@
 set autowriteall
 
 " My Snippets
-" source ~/snippits.vim
+source C:/Users/Administrator/snippits.vim
 
 set encoding=utf-8
 
@@ -89,6 +89,9 @@ map <LEADER>sc :set spell!<CR>
 noremap <C-x> hea<C-x>s
 inoremap <C-x> <Esc>hea<C-x>s
 
+" delete the all marks in all buffers and refresh the file
+noremap m; :delmarks!<CR>:e<CR>
+
 " Compile function
 map <LEADER>c :call CompileRunGcc()<CR>
 func! CompileRunGcc()
@@ -118,9 +121,9 @@ func! CompileRunGcc()
 endfunc
 
 
-" =========================="
-"		plugin installation	"
-" =========================="
+" ========
+" ======== plugin installation
+" ========
 call plug#begin('C:/Users/Administrator/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -183,9 +186,9 @@ Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
 call plug#end()
 
 
-" =========================="
-"		GUI setting			"
-" =========================="
+" ========
+" ======== GUI setting	
+" ========
 colorscheme gruvbox
 " colorscheme jellybeans
 set bg=dark                       
@@ -210,21 +213,13 @@ set guicursor+=a:blinkon0
 " Set the cursor color
 " hi Cursor guifg=#ffcc00 guibg=black
 
-" auto-completion
-" inoremap ' ''<ESC>i
-" inoremap " ""<ESC>i
-" inoremap ( ()<ESC>i
-" inoremap [ []<ESC>i
-" inoremap { {<CR>}<ESC>O
-
 " the model of cursor
 " :autocmd InsertEnter * set cul
 " :autocmd InsertLeave * set nocul
 
-
-" =========================="
-"		operation			"
-" =========================="
+" ========
+" ======== operation
+" ========
 map <LEADER>r :e C:/Users/Administrator/_vimrc<CR>
 map <LEADER>R :source %<CR>
 
@@ -268,10 +263,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 nmap bl  :bnext<CR>
 nmap bh  :bprev<CR>
 nmap bc  :bdelete <CR>
- 
+
 " Press space and to jump to the next and edit it
 nnoremap ;; a<++><Esc>/<++><CR>
-map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
+noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
 :match StatusLineTermNC /<++>/
 
 " the setting about deleting
@@ -285,12 +280,14 @@ nnoremap <leader>D  "_D
 nnoremap ;d <c-v>$hd
 nnoremap ;y <c-v>$hy
 
-"======================================="
-"           plugin setting              "
-"======================================="
-" =========================="
-"		NERDTree			"
-" =========================="
+" ========
+" ======== startify
+" ========
+nnoremap st :Startify<CR>
+
+" ========
+" ======== NERDTree
+" ========
 map tt :NERDTreeToggle<CR>
 map tn :NERDTreeFind<CR>
 let NERDTreeMapOpenInTab = "o"
@@ -302,17 +299,17 @@ let NERDTreeIgnore = [
             \ ]
 
 
-" =========================="
-"		vim-autoformat		"
-" =========================="
+" ========
+" ======== vim-autoformat
+" ========
 noremap <F3> :Autoformat<CR>
 let g:autoformat_verbosemode=1
 let g:formatdef_my_html = '"html-beautify -s 2"'
 let g:formatters_html = ['my_html']
 
-" =========================="
-"	nerdtree-git-plugin		"
-" =========================="
+" ========
+" ======== nerdtree-git-plugin 
+" ========
 " let g:NERDTreeShowIgnoredStatus = 1
 " let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -327,9 +324,9 @@ let g:formatters_html = ['my_html']
     \ }
 
 
-" =========================="
-"			ale				"
-" =========================="
+" ========
+" ======== ale
+" ========
 let g:ale_sign_column_always = 1 
 let g:ale_set_highlights = 0
 "自定义error和warning图标
@@ -357,9 +354,9 @@ let g:ale_linters = {
 \   'python': ['pylint'],
 \}
 
-" =========================="
-"	rainbow-parentheses-vim	"
-" =========================="
+" ========
+" ======== rainbow-parentheses-vim 
+" ========
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -385,9 +382,9 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-" =========================="
-"		vim-signiture		"
-" =========================="
+" ========
+" ======== vim-signiture
+" ========
 let g:SignatureMap = {
         \ 'Leader'             :  "m",
         \ 'PlaceNextMark'      :  "m,",
@@ -413,9 +410,9 @@ let g:SignatureMap = {
         \ }
 
 
-" =========================="
-"		MarkdownPreview		"
-" =========================="
+" ========
+" ======== MarkdownPreview
+" ========
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
@@ -439,42 +436,42 @@ let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
 
-" =========================="
-"      vim-table-mode       "
-" =========================="
+" ========
+" ======== vim-table-mode 
+" ========
 map <LEADER>tm :TableModeToggle<CR>
 
 
-" =========================="
-"		Undotree            "
-" =========================="
+" ========
+" ======== Undotree
+" ========
 let g:undotree_DiffAutoOpen = 1
 map L :UndotreeToggle<CR>
 
 
-" =========================="
-"		TagbarToggle		"
-" =========================="
+" ========
+" ======== TagbarToggle
+" ========
 nmap <M-o> :TagbarToggle<CR>
 
 
-" =========================="
-"		Vim-Easy-Align		"
-" =========================="
+" ========
+" ======== Vim-Easy-Align
+" ========
 nmap <LEADER>a <Plug>(EasyAlign)
 vmap <LEADER>a <Plug>(EasyAlign)
 
 
-" =========================="
-"		vim-commentary		"
-" =========================="
+" ========
+" ======== vim-commentary
+" ========
 autocmd FileType python,shell,coffee set commentstring=#\ %s
 autocmd FileType java,c,cpp set commentstring=//\ %s
 
 
-" =========================="
-"		vim-airline 		"	
-" =========================="
+" ========
+" ======== vim-airline
+" ========
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#tabline#enabled = 1
@@ -489,16 +486,16 @@ endfunction
 autocmd VimEnter * call ArilineInit()
 
 
-" =========================="
-"		vim-json			"
-" =========================="
+" ========
+" ======== vim-json
+" ========
 let g:indentLine_concealcursor=""
 let g:vim_json_syntax_conceal = 0
 
 
-" =========================="
-"		fzf.vim				"
-" =========================="
+" ========
+" ======== fzf.vim
+" ========
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>p :Lines<CR>
@@ -510,14 +507,16 @@ command! -bang -nargs=* Ag
    \                 <bang>0)
 nnoremap <silent> <Leader>A :Ag<CR>
 
-" =========================="
-"		easymotion			"
-"==========================="
+
+" ========
+" ======== easymotion
+" ========
 nmap ss <Plug>(easymotion-s2)
 
-" =========================="
-"		neocomplete		    "
-"==========================="
+
+" ========
+" ======== neocomplete
+" ========
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
@@ -599,9 +598,9 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
-" =========================="
-"		ctrlP				"
-"==========================="
+" ========
+" ======== ctrlP
+" ========
 " let g:ctrlp_map = '<leader>p'
 " let g:ctrlp_cmd = 'CtrlP'
 " map <leader>f :CtrlPMRU<CR>
@@ -623,9 +622,9 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " endif
 
 
-" =========================="
-"		ctrlp-funky			"
-"==========================="
+" ========
+" ======== ctrlp-funky
+" ========
 " enter the list of functions in the current file
 " nnoremap <Leader>fu :CtrlPFunky<Cr> 
 " Search for the function corresponding to the word under the current cursor
