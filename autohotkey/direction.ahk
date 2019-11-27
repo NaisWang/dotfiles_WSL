@@ -35,6 +35,7 @@ global showflag := 0
 
 global flag:=1
 
+
 ; ========
 ; ======== Replace the shortcut key shift-insert with ctrl-V in the mintty.exe
 ; ========
@@ -46,6 +47,7 @@ init(){
     Hotkey, ^+v, <past> 
 }
 
+
 ; ========
 ; ======== Replace the shortcut key shift-insert with ctrl-V in the gvim.exe
 ; ========
@@ -56,6 +58,54 @@ gvimInit(){
 	Hotkey, IfWinActive, ahk_exe gvim.exe
 	Hotkey, ^+v, <gvim>
 }
+
+; ========
+; ======== the shortcut key for jetbrains
+; ========
+#IfWinActive ahk_exe idea64.exe
+	^+H::
+		Send {Left 3}
+	Return
+	^+J::
+		Send {Down 3}
+	Return
+	^+K:: 
+		Send {Up 3}
+	Return
+	^+L::
+		Send {Right 3}
+	Return
+#IfWinActive
+
+#IfWinActive ahk_exe webstorm64.exe
+	^+H::
+		Send {Left 3}
+	Return
+	^+J::
+		Send {Down 3}
+	Return
+	^+K:: 
+		Send {Up 3}
+	Return
+	^+L::
+		Send {Right 3}
+	Return
+#IfWinActive
+
+#IfWinActive ahk_exe pycharm64.exe
+	^+H::
+		Send {Left 3}
+	Return
+	^+J::
+		Send {Down 3}
+	Return
+	^+K:: 
+		Send {Up 3}
+	Return
+	^+L::
+		Send {Right 3}
+	Return
+#IfWinActive
 
 
 ; ========
@@ -575,12 +625,13 @@ Return
     WinActivate, ahk_class YdMiniModeWndClassName
 Return
 
+
 ; ========
 ; ======== Disable the win key
 ; ========
 ~LWin::Send {Bind}{vk07}
 #`::
-   Send {RWin} 
+   Send {RWin}
 return
 
 
