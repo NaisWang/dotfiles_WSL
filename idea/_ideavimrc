@@ -85,7 +85,7 @@ map <C-o> :action Back<CR>
 map <C-i> :action Forward<CR>
 
 " close ToolButtons、NavigationBar
-map tm :action ViewNavigationBar<CR>:action EditorToggleShowGutterIcons<CR>:action ViewMainMenu<CR>
+map tm :action ViewNavigationBar<CR>:action EditorToggleShowGutterIcons<CR>:action ViewMainMenu<CR>:action ViewToolButtons<CR>
 
 " the setting about deleting
 noremap  <leader>x  "_x

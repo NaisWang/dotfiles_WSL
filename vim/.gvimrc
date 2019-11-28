@@ -40,8 +40,8 @@ map U <C-r>
 " set listchars=tab:▸\ ,trail:▫
 
 set langmenu=zh_CN.UTF-8
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
+" source $VIMRUNTIME/delmenu.vim
+" source $VIMRUNTIME/menu.vim
 language messages zh_CN.utf-8
 
 " make the Plugin more compatibility
@@ -69,12 +69,6 @@ noremap <LEADER><CR> :nohlsearch<CR>
 set foldmethod=indent
 set foldlevel=99
 
-" https://superuser.com/questions/302186/vim-scrolls-very-slowly-when-a-line-is-too-long
-" Syntax coloring lines that are too long just slows down the world
-set synmaxcol=1000
-set ttyfast    " u got a fast terminal
-set ttyscroll=3
-set lazyredraw " to avoid scrolling problems
 
 " undo/redo persistence
 set undofile 
@@ -636,4 +630,3 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " let g:ctrlp_funky_syntax_highlight = 1
 " let g:ctrlp_extensions = ['funky']
-

@@ -350,7 +350,7 @@ return
 	{
 		WinMove,ahk_id %id%,,0,0,1922, 1080
 	}else{
-		WinMove,ahk_id %id%,,-8,0, 1938, 1090
+		WinMove,ahk_id %id%,,-8,0, 1938, 1087
 	}
 	
 return
@@ -380,7 +380,7 @@ return
 #j::
     WinGet, id, ID, A
 	WinGetPos,X,Y,W,H,ahk_id %id%
-	WinMove,ahk_id %id%,,%X%,540,%W%, 540
+	WinMove,ahk_id %id%,,%X%,540,%W%, 547
 return
 
 movetoLeft(OutputVar,OutputVar1){
@@ -437,7 +437,7 @@ movetoRight(OutputVar, OutputVar1){
 		if(specialPro[OutputVar] = 1)
 		{
 			windows[OutputVar1] := 21
-			leftWindowWidth1 := leftWindowWidth + 2
+			leftWindowWidth1 := leftWindowWidth + ;2
 			rightWindowWidth1 := rightWindowWidth - 2
 			WinMove,ahk_id %OutputVar1%,,%leftWindowWidth1%,0,%rightWindowWidth1%,1080
 		}
@@ -462,9 +462,9 @@ Return
 	WinGetPos,X,Y,W,H,A
     WinGet, active_id_now, ID, A
     WinGet, OutputVar_now, ProcessName, A
-	CoordMode, Mouse, Screen  ; 把光标移动是相对于屏幕坐标的位置.
+	CoordMode, Mouse, Screen
 	if(X>100){
-		Click, 0, 0  ; 在指定坐标处点击鼠标左键.
+		Click, 0, 0
 		WinGet, active_id_other, ID, A
 		WinGet, OutputVar_other, ProcessName, A
 		movetoLeft(OutputVar_now, active_id_now)
@@ -472,7 +472,7 @@ Return
 	}
 	else
 	{
-		Click, 1720,0   ; 在指定坐标处点击鼠标左键.
+		Click, 1720,0
 		WinGet, active_id_other, ID, A
 		WinGet, OutputVar_other, ProcessName, A
 		movetoRight(OutputVar_now, active_id_now)
@@ -557,14 +557,6 @@ Return
 ; ========
 ; ======== Activate windows left,right, down and up.
 ; ========
-!1::
-    CoordMode, Mouse, Screen
-	Click, 40, 0
-Return
-#1::
-    CoordMode, Mouse, Screen
-	Click, 40, 0
-Return
 #,::
     CoordMode, Mouse, Screen
 	Click, 40, 0
@@ -574,14 +566,6 @@ Return
 	Click, 40, 0
 Return
 
-!2::
-    CoordMode, Mouse, Screen
-	Click, 1720,0
-Return
-#2::
-    CoordMode, Mouse, Screen
-	Click, 1720,0
-Return
 #.::
     CoordMode, Mouse, Screen
 	Click, 1720,0
@@ -591,23 +575,24 @@ Return
 	Click, 1720,0
 Return
 
-!3::
+!;::
     CoordMode, Mouse, Screen
 	Click, 0, 555
 Return
-#3::
+#;::
     CoordMode, Mouse, Screen
 	Click, 0, 555
 Return
 
-!4::
+!'::
     CoordMode, Mouse, Screen
 	Click, 1720, 555
 Return
-#4::
+#'::
     CoordMode, Mouse, Screen
 	Click, 1720, 555
 Return
+
 
 ; ========
 ; ======== let the youdao get the focus
@@ -641,7 +626,6 @@ return
 ; ========
 !^e::MouseClick, WheelDown, , , 2  
 !^y::MouseClick, WheelUp, , , 2  
-
 
 ; ========
 ; ======== Open or use software quickly
