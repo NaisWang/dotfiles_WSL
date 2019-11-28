@@ -162,9 +162,9 @@ source $ZSH/oh-my-zsh.sh
 
 
 # Start tmux as default automatically when shell start
-if [ -z "$TMUX" ]; then
-	tmux
-fi
+# if [ -z "$TMUX" ]; then
+# 	tmux
+# fi
 
 # the setting of dircolors
 eval `dircolors ~/.dircolors` 

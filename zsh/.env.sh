@@ -1,6 +1,6 @@
-# ===
-# === path setting
-# ===
+# ========
+# ======== path setting
+# ========
 Acrobat=/mnt/c/"Program Files (x86)"/Adobe/"Acrobat DC"/Acrobat
 notepad=/mnt/e/notepad++
 typora=/mnt/e/typora/Typora
@@ -16,9 +16,9 @@ ImageGlass=/mnt/e/ImageGlass/ImageGlass/
 xmind=/mnt/c/"Program Files"/"XMind ZEN"
 export PATH=/bin:$PATH:${Acrobat}:${notepad}:${typora}:${Office}:${potplay}:${quickLook}:${zip7}:${fd}:${chrome}:${gvim}:${ImageGlass}:${code}:${xmind}
 
-# ===
-# === alias setting
-# ===
+# ========
+# ======== alias setting
+# ========
 alias np+='nohup notepad++'
 alias tp='nohup Typora.ext'
 alias ab='nohup Acrobat &'
@@ -52,8 +52,13 @@ alias gvi="cd /mnt/f/envs"
 alias lsc="colorls"
 alias llc="colorls -lA --sd"
 
-# ===
-# === fzf setting
-# ===
+alias code="code.sh"
+
+alias killz="python3 /mnt/f/dotfiles/dotfiles_WSL/killzsh.py"
+
+
+# ========
+# ======== fzf setting
+# ========
 export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 export FZF_DEFAULT_OPTS="--layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"

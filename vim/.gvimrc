@@ -79,12 +79,13 @@ map J 4j
 map K 4k
 
 " Spilling Check
-map <LEADER>sc :set spell!<CR>
 noremap <C-x> hea<C-x>s
 inoremap <C-x> <Esc>hea<C-x>s
 
-" Keep cursor at the bottom of the visual selection after you yank it.
+" Keep cursor at the bottom of the visual selection after you operate it
 vmap y ygv<Esc>
+vnoremap gu gugv<Esc>
+vnoremap gU gUgv<Esc>
 
 " delete the all marks in all buffers and refresh the file
 noremap m; :delmarks!<CR>:e<CR>
@@ -116,6 +117,16 @@ func! CompileRunGcc()
     exec "MarkdownPreview"
   endif
 endfunc
+
+" stop run
+map <LEADER>s :call StopRun()<CR>
+fun! StopRun()
+	exec "w"
+	if &filetype == 'markdown'
+		exec "MarkdownPreviewStop"
+	endif
+endfunc
+
 
 " ========
 " ======== plugin installation
@@ -343,9 +354,9 @@ let g:ale_lint_on_enter = 0
 nmap , <Plug>(ale_previous_wrap)
 nmap . <Plug>(ale_next_wrap)
 "<Leader>s触发/关闭语法检查
-nmap <Leader>s :ALEToggle<CR>
+"nmap <Leader>s :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
+" nmap <Leader>d :ALEDetail<CR>
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
 \   'c++': ['clang'],
