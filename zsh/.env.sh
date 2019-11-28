@@ -56,6 +56,7 @@ alias code="code.sh"
 
 alias killz="python3 /mnt/f/dotfiles/dotfiles_WSL/killzsh.py"
 
+alias t="tmux"
 
 # ========
 # ======== fzf setting

@@ -1,3 +1,4 @@
+# kill the zsh whose CPU is too high after closing the terminal
 import psutil
 import os
 import signal
