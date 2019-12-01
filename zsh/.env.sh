@@ -57,6 +57,9 @@ alias code="code.sh"
 alias killz="python3 /mnt/f/dotfiles/dotfiles_WSL/killzsh.py"
 
 alias t="tmux"
+alias ta="tmux a"
+
+alias ps="powershell.exe"
 
 # ========
 # ======== fzf setting
