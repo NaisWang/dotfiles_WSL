@@ -127,6 +127,7 @@ class compress(Command):
         extension = ['.zip', '.tar.gz', '.rar', '.7z']
         return ['compress ' + os.path.basename(self.fm.thisdir.path) + ext for ext in extension]
 
+# you must copy the zip before you extract the zip
 class extracthere(Command):
     def execute(self):
         """ Extract copied files to current directory """

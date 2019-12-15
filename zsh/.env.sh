@@ -19,17 +19,6 @@ export PATH=/bin:$PATH:${Acrobat}:${notepad}:${typora}:${Office}:${potplay}:${qu
 # ========
 # ======== alias setting
 # ========
-alias np+='nohup notepad++'
-alias tp='nohup Typora.ext'
-alias ab='nohup Acrobat &'
-alias cpd="cygpath -w $(pwd) | sed 's/\\\/\\//g' | tr -d \\\n | clip"
-alias workon=". workon.sh"
-alias sc="screenfetch"
-alias ra="ranger"
-alias image="ImageGlass_sh.sh"
-alias gvim="gvim.sh"
-alias rm="trash-put"
-
 alias gje="cd /mnt/f/javaEE_project"
 alias gjs="cd /mnt/f/javaSE_project"
 alias gjt="cd /mnt/f/javaTools"
@@ -49,6 +38,16 @@ alias gmp="cd /mnt/f/temporary"
 alias gbd="cd /mnt/f/BaiduNetdiskDownload"
 alias gvn="cd /mnt/f/vnote"
 alias gvi="cd /mnt/f/envs"
+alias gle="cd /mnt/c/Users/Administrator/.leetcode"
+
+alias ab='nohup Acrobat &'
+alias workon=". workon.sh"
+alias sc="screenfetch"
+alias ra="ranger"
+alias image="ImageGlass_sh.sh"
+alias gvim="gvim.sh"
+alias rm="trash-put"
+
 alias lsc="colorls"
 alias llc="colorls -lA --sd"
 
@@ -60,6 +59,12 @@ alias t="tmux"
 alias ta="tmux a"
 
 alias ps="powershell.exe"
+
+alias to="tb"
+alias tot="tb -t"
+alias toc="tb -c"
+alias tod="tb -d"
+alias toC="tb --clear"
 
 # ========
 # ======== fzf setting

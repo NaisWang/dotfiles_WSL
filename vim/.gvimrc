@@ -9,11 +9,11 @@
 " ======== startup seting	
 " ========
 "  Auto load for first time uses
-" if empty(glob('~/.config/nvim/autoload/plug.vim'))
-"   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-" endif
+if empty(glob('E:/gvim/autoload/plug.vim'))
+  silent !curl -fLo E:/gvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 " autosave
 set autowriteall
@@ -31,6 +31,10 @@ let &t_ut='' " make the colour matching more normal
 noremap s <nop>
 noremap B b
 map U <C-r>
+
+" uppercase and lowercase
+noremap gu gU
+noremap gU gu
 
 " set wrap
 " set mouse=a " Support mouse operation
@@ -78,6 +82,8 @@ set undodir=~/.vim/undodir
 map J 4j
 map K 4k
 
+noremap , ;
+
 " Spilling Check
 noremap <C-x> hea<C-x>s
 inoremap <C-x> <Esc>hea<C-x>s
@@ -94,24 +100,7 @@ noremap m; :delmarks!<CR>:e<CR>
 map <LEADER>c :call CompileRunGcc()<CR>
 func! CompileRunGcc()
   exec "w"
-  if &filetype == 'c'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'cpp'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'java'
-    exec "!javac %"
-    exec "!time java %<"
-  elseif &filetype == 'sh'
-    :!time bash %
-  elseif &filetype == 'python'
-    set splitright
-    ":vsp
-    ":vertical resize-10
-    :sp
-    :term python3 %
-  elseif &filetype == 'html'
+  if &filetype == 'html'
     exec "!chromium % &"
   elseif &filetype == 'markdown'
     exec "MarkdownPreview"
@@ -257,6 +246,7 @@ nmap <right> :vertical resize+5<CR>
 
 " tab setting
 map tu  :tabe
+map tc  :q<cr>
 map th  :-tabnext<CR>
 map tl  :+tabnext<CR>
 " Move the tabs with tmn and tmi
@@ -312,10 +302,7 @@ let NERDTreeIgnore = [
 " ========
 " ======== vim-autoformat
 " ========
-noremap <F3> :Autoformat<CR>
-let g:autoformat_verbosemode=1
-let g:formatdef_my_html = '"html-beautify -s 2"'
-let g:formatters_html = ['my_html']
+noremap \f :Autoformat<CR>
 
 " ========
 " ======== nerdtree-git-plugin 

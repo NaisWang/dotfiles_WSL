@@ -86,9 +86,12 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git 
+plugins=(
+		git 
 		virtualenv
 	   	zsh-syntax-highlighting
+		history-substring-search
+		z
 		)
 
 source $ZSH/oh-my-zsh.sh
@@ -165,6 +168,10 @@ source $ZSH/oh-my-zsh.sh
 # if [ -z "$TMUX" ]; then
 # 	tmux
 # fi
+
+# the setting of history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # the setting of dircolors
 eval `dircolors ~/.dircolors` 

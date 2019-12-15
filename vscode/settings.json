@@ -31,7 +31,6 @@
     // python设置
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
-    "python.formatting.provider": "yapf",
     "python.pythonPath": "E:\\python3.7.1\\python.exe",
     "files.insertFinalNewline": true,
     "python.autoComplete.extraPaths": [
@@ -39,17 +38,12 @@
         　　　　"E:/python/Scripts",
     ],
 
-    "editor.quickSuggestions": {
-        "other": true,
-        "comments": true,
-        "strings": true
-    },
     "python.jediEnabled": false,
     "[html]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
     "java.configuration.checkProjectSettingsExclusions": false,
-    "leetcode.defaultLanguage": "java",
+    "leetcode.defaultLanguage": "python3",
     "[javascript]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
@@ -81,13 +75,13 @@
     "editor.lineNumbers": "relative",
     "vim.leader": " ",
     "vim.useSystemClipboard": true,
+    "vim.easymotion":true,
 
     // search setting 
     "vim.hlsearch": true,
     "vim.ignorecase": true,
     "vim.smartcase": true,
     "vim.incsearch": true,
-
     "vim.insertModeKeyBindings": [
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -105,6 +99,7 @@
         {"before": ["leader","h"], "after": ["C-w", "h"]},
         {"before": ["leader","j"], "after": ["C-w", "j"]},
         {"before": ["leader","k"], "after": ["C-w", "k"]},
+        {"before": ["leader", "s", "s"], "after": ["<leader>", "<leader>", "s"]},
 
         //tab setting
         {"before": ["t","h"], "commands": [":tabp"]},
@@ -129,9 +124,12 @@
         {"before":["<leader>", "d"], "after":["\"", "_", "d"]},
         {"before":["<leader>", "D"], "after":["\"", "_", "D"]},
 
+        {"before":["<leader>", "r"], "commands":["workbench.action.openSettingsJson"]},
+        
         // Press space and  to jump to the next and edit it
         {"before":["<leader>", ";", ";"], "after":["a", "<", "+", "+", ">", "<Esc>", "/", "<", "+", "+", ">", "<CR>"]},
         {"before":["<leader>", "<leader>"], "after":["<Esc>", "/", "<", "+", "+", ">", "<CR>", ":", "n", "o", "h", "l", "s", "e", "a", "r", "c", "h", "<CR>", "\"", "_", "c", "4", "l"]},
+
 
         // copy and deleting without line break
         {"before":["<leader>", ";", "d"], "after":["C-v", "$", "h", "d"]},
@@ -160,4 +158,16 @@
     "files.autoSaveDelay": 100,
     "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\wsl.exe",
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "[python]": {
+		
+    },
+    "cSpell.userWords": [
+        "blit",
+        "pygame"
+    ],
+    "leetcode.hint.configWebviewMarkdown": false,
+    "leetcode.workspaceFolder": "C:\\Users\\Administrator\\.leetcode",
+    "leetcode.endpoint": "leetcode-cn",
+    "leetcode.hint.commandShortcut": false,
+    "leetcode.hint.commentDescription": false,
 }

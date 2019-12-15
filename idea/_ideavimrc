@@ -14,6 +14,7 @@ set number
 map J 4j
 map K 4k
 map s <nop>
+noremap , ;
 
 map <leader>a :action $SelectAll<CR>
 map <leader>f :action ReformatCode<CR>
@@ -22,6 +23,10 @@ map g/ :action CommentByLineComment<CR>
 " undo and redo
 map u :action $Undo<CR> 
 map U :action $Redo<CR>
+
+" uppercase and lowercase
+noremap gu gU
+noremap gU gu
 
 " search setting
 set ignorecase
@@ -96,6 +101,9 @@ vnoremap <leader>d  "_d
 
 " vim_surround
 set surround
+
+" the hotkey is <A-n> but the function can take the hotkey <A-p> up
+set multiple-cursors 
 
 " show local history
 map <S-l> :action LocalHistory.ShowHistory<CR>

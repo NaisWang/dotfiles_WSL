@@ -419,5 +419,21 @@
         "key": "ctrl+r",
         "command": "-workbench.action.quickOpenNavigateNextInRecentFilesPicker",
         "when": "inQuickOpen && inRecentFilesPicker"
+    },
+    {
+        "key": "alt+;",
+        "command": "workbench.actions.view.problems"
+    },
+    {
+        "key": "ctrl+shift+m",
+        "command": "-workbench.actions.view.problems"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "leetcode.testSolution"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "leetcode.submitSolution"
     }
 ]

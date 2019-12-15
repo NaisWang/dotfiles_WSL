@@ -8,18 +8,15 @@
 " ========
 " ======== startup seting	
 " ========
-"  Auto load for first time uses
-" if empty(glob('~/.config/nvim/autoload/plug.vim'))
-"   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+" Auto load for first time uses
+" if empty(glob('~/.vim/autoload/plug.vim'))
+"   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 "     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 " endif
 
 " autosave
 set autowriteall
-
-" let g:pydiction_location = '~/.vim/pydiction-master/complete-dict'
-" let g:pydiction_menu_height = 10
 
 " My Snippets
 source ~/snippits.vim
@@ -83,6 +80,11 @@ noremap s <nop>
 
 map U <C-r>
 
+
+" uppercase and lowercase
+noremap gu gU
+noremap gU gu
+
 " set wrap
 " set mouse=a " Support mouse opeartion
 
@@ -135,7 +137,6 @@ xnoremap p pgvy
 " Keep cursor at the bottom of the visual selection after you yank it.
 vmap y ygv<Esc>
 
-
 " ========
 " ======== plugin installation
 " ========
@@ -156,6 +157,9 @@ Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
 Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
+
+Plug 'Chiel92/vim-autoformat'
 
 Plug 'itchyny/vim-cursorword'  " Underline the word under the cursor
 
@@ -247,6 +251,31 @@ nnoremap <leader>d  "_d
 vnoremap <leader>d  "_d
 nnoremap <leader>D  "_D
 
+" find and replace
+noremap \s :%s//g<left><left>
+
+
+" Compile function
+noremap <leader>c :call CompileRunGcc()<CR>
+
+func! CompileRunGcc()
+	exec "w"
+	if &filetype == 'c'
+		exec "!g++ % -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'cpp'
+		exec "!g++ -std=c++11 % -Wall -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'python'
+		:term python3 %
+	endif
+endfunc
+
+
+" ========
+" ======== easymotion
+" ========
+nmap ss <Plug>(easymotion-s2)
 
 " ========
 " ======== NERDTree
@@ -337,6 +366,11 @@ command! -bang -nargs=* Ag
    \                 <bang>0)
 nnoremap <silent> <Leader>A :Ag<CR>
 
+
+" ========
+" ======== format
+" ========
+nnoremap \f :Autoformat<CR>
 
 " ========
 " ======== neocomplete

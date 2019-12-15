@@ -320,6 +320,7 @@ Return
 	WinActivate, ahk_id %MinttyID%
 Return
 
+
 ; ========
 ; ======== window operation
 ; ========
@@ -329,11 +330,6 @@ return
 
 ^#l::
     send, {lwin down}{ctrl down}{right}
-return
-
-#8::
-    WinGet, OutputVar, ProcessName, A
-	MsgBox %OutputVar%
 return
 
 #m::
@@ -437,7 +433,7 @@ movetoRight(OutputVar, OutputVar1){
 		if(specialPro[OutputVar] = 1)
 		{
 			windows[OutputVar1] := 21
-			leftWindowWidth1 := leftWindowWidth + ;2
+			leftWindowWidth1 := leftWindowWidth + 2
 			rightWindowWidth1 := rightWindowWidth - 2
 			WinMove,ahk_id %OutputVar1%,,%leftWindowWidth1%,0,%rightWindowWidth1%,1080
 		}
@@ -561,33 +557,17 @@ Return
     CoordMode, Mouse, Screen
 	Click, 40, 0
 Return
-!,::
-    CoordMode, Mouse, Screen
-	Click, 40, 0
-Return
 
 #.::
     CoordMode, Mouse, Screen
 	Click, 1720,0
 Return
-!.::
-    CoordMode, Mouse, Screen
-	Click, 1720,0
-Return
 
-!;::
-    CoordMode, Mouse, Screen
-	Click, 0, 555
-Return
 #;::
     CoordMode, Mouse, Screen
 	Click, 0, 555
 Return
 
-!'::
-    CoordMode, Mouse, Screen
-	Click, 1720, 555
-Return
 #'::
     CoordMode, Mouse, Screen
 	Click, 1720, 555
