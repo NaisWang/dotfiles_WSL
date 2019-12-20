@@ -9,11 +9,11 @@
 " ======== startup seting	
 " ========
 "  Auto load for first time uses
-if empty(glob('E:/gvim/autoload/plug.vim'))
-  silent !curl -fLo E:/gvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" if empty(glob('E:/gvim/autoload/plug.vim'))
+"   silent !curl -fLo E:/gvim/autoload/plug.vim --create-dirs
+"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
 
 " autosave
 set autowriteall
