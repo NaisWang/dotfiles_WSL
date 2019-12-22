@@ -26,6 +26,8 @@ set backspace=indent,eol,start " make vim can use the backspace key to delete
 let mapleader=" "
 set clipboard=unnamedplus
 
+noremap B b
+
 func! GetSelectedText_yy()
     normal "xY
     let result = getreg("x")
@@ -117,6 +119,8 @@ noremap <LEADER><CR> :nohlsearch<CR>
 set foldmethod=indent
 set foldlevel=99
 
+" delete the all marks in all buffers and refresh the file
+noremap m; :delmarks!<CR>:e<CR>
 
 " undo/redo persistence
 set undofile 
@@ -149,6 +153,7 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'kshenoy/vim-signature'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -176,6 +181,7 @@ call plug#end()
 colorscheme gruvbox
 " colorscheme jellybeans
 set bg=dark
+set guifont=SauceCodePro\ NF:h10
 
 set wildmenu 
 set cursorline
@@ -436,12 +442,6 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 "let g:neocomplete#disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')

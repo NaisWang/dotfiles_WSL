@@ -154,6 +154,8 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'w0rp/ale'
 
+Plug 'junegunn/vim-peekaboo'
+
 " Git
 " Plug 'tpope/vim-fugitive'
 " Plug 'mhinz/vim-signify'
