@@ -192,10 +192,6 @@ syntax on
 
 set smartindent
 
-" the model of cursor
-:autocmd InsertEnter * set cul
-:autocmd InsertLeave * set nocul
-
 
 " ========
 " ======== operation
@@ -276,6 +272,11 @@ func! CompileRunGcc()
 		:term python3 %
 	endif
 endfunc
+
+
+" the model of cursor
+au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+au InsertEnter,InsertChange * silent execute '!echo -ne "\e[5 q]"' | redraw!
 
 
 " ========

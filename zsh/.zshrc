@@ -9,7 +9,6 @@ export TERM=xterm-256color
 # Path to your oh-my-zsh installation.
 export ZSH="/root/.oh-my-zsh"
 
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -92,9 +91,11 @@ plugins=(
 	   	zsh-syntax-highlighting
 		history-substring-search
 		z
+		vi-mode
 		)
 
 source $ZSH/oh-my-zsh.sh
+
 
 # User configuration
 
@@ -169,9 +170,35 @@ source $ZSH/oh-my-zsh.sh
 # 	tmux
 # fi
 
-# the setting of history-substring-search
+# ========
+# ======== the setting of history-substring-search
+# ========
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# the setting of dircolors
+# ========
+# ======== the setting of dircolors
+# ========
 eval `dircolors ~/.dircolors` 
+
+# ========
+# ======== set about vi-mode
+# ========
+function zle-keymap-select {
+	if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+		echo -ne '\e[1 q'
+	elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+		echo -ne '\e[5 q'
+	fi
+}
+# Use beam shape cursor on startup.
+echo -ne '\e[5 q'
+# Use beam shape cursor for each new prompt.
+preexec() {
+	echo -ne '\e[5 q'
+}
+_fix_cursor() {
+	echo -ne '\e[5 q'
+}
+precmd_functions+=(_fix_cursor)
+

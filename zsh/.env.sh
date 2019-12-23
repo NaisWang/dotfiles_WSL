@@ -14,7 +14,8 @@ chrome=/mnt/c/"Program Files (x86)"/Google/Chrome/Application
 gvim=/mnt/e/gvim/
 ImageGlass=/mnt/e/ImageGlass/ImageGlass/
 xmind=/mnt/c/"Program Files"/"XMind ZEN"
-export PATH=/bin:$PATH:${Acrobat}:${notepad}:${typora}:${Office}:${potplay}:${quickLook}:${zip7}:${fd}:${chrome}:${gvim}:${ImageGlass}:${code}:${xmind}
+tmux=~/tmux-master
+export PATH=/bin:$PATH:${tmux}:${Acrobat}:${notepad}:${typora}:${Office}:${potplay}:${quickLook}:${zip7}:${fd}:${chrome}:${gvim}:${ImageGlass}:${code}:${xmind}
 
 # ========
 # ======== alias setting
