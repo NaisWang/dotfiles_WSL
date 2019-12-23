@@ -72,8 +72,6 @@ noremap <LEADER><CR> :nohlsearch<CR>
 " fold setting
 set foldmethod=indent
 set foldlevel=99
-
-
 " undo/redo persistence
 set undofile 
 " Set the place of undo. You can create the undofir directory first. 
@@ -595,38 +593,3 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
-
-" ========
-" ======== ctrlP
-" ========
-" let g:ctrlp_map = '<leader>p'
-" let g:ctrlp_cmd = 'CtrlP'
-" map <leader>f :CtrlPMRU<CR>
-" nmap <Leader>b :CtrlPBuffer<CR>
-" let g:ctrlp_custom_ignore = {
-"     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-"     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-"     \ }
-" let g:ctrlp_working_path_mode=0
-" let g:ctrlp_match_window_bottom=1
-" let g:ctrlp_max_height=15
-" let g:ctrlp_match_window_reversed=0
-" let g:ctrlp_mruf_max=500
-" let g:ctrlp_follow_symlinks=1
-" if executable('ag')
-"   set grepprg=ag\ --nogroup\ --nocolor
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-"   let g:ctrlp_use_caching = 0
-" endif
-
-
-" ========
-" ======== ctrlp-funky
-" ========
-" enter the list of functions in the current file
-" nnoremap <Leader>fu :CtrlPFunky<Cr> 
-" Search for the function corresponding to the word under the current cursor
-" nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-" let g:ctrlp_funky_syntax_highlight = 1
-" let g:ctrlp_extensions = ['funky']
