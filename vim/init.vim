@@ -16,6 +16,7 @@
 
 " autosave
 set autowriteall
+
 " My Snippets
 source ~/snippits.vim
 
@@ -149,7 +150,6 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'kshenoy/vim-signature'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -356,6 +356,8 @@ nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 " nnoremap <silent> <Leader>p :Lines<CR>
 nnoremap <silent> <Leader>o :History<CR>
+nnoremap <silent> <Leader>m :Marks<CR>
+
 command! -bang -nargs=* Ag
    \ call fzf#vim#ag(<q-args>,
    \                 <bang>0 ? fzf#vim#with_preview('up:60%')
