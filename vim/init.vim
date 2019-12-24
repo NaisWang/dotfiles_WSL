@@ -1,10 +1,8 @@
-"  _t
-"  ____   __ __     _____ __  __ 
-" |  \/  \ \ / / \ \   / /_ _|  \/  |
-" | |\/| |\ V /   \ \ / / | || |\/| |
-" | |  | | | |     \ V /  | || |  | |
-" |_|  |_| |_|      \_/  |___|_|  |_|
-"                                         
+"  __  ____   __  _   _ _____ _____     _____ __  __ 
+" |  \/  \ \ / / | \ | | ____/ _ \ \   / /_ _|  \/  |
+" | |\/| |\ V /  |  \| |  _|| | | \ \ / / | || |\/| |
+" | |  | | | |   | |\  | |__| |_| |\ V /  | || |  | |
+" |_|  |_| |_|   |_| \_|_____\___/  \_/  |___|_|  |_|
 
 " ========
 " ======== startup seting	
@@ -18,7 +16,6 @@
 
 " autosave
 set autowriteall
-
 " My Snippets
 source ~/snippits.vim
 
@@ -82,7 +79,6 @@ let &t_ut='' " make the colour matching more normal
 noremap s <nop>
 
 map U <C-r>
-
 
 " uppercase and lowercase
 noremap gu gU
@@ -235,7 +231,6 @@ map tml :+tabmove<CR>
 "When you open the file, the cursor will stay where the file was last opened. 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
 " Buffer setting
 nmap bl  :bnext<CR>
 nmap bh  :bprev<CR>
@@ -244,7 +239,7 @@ nmap bc  :bdelete <CR>
 " Press space and to jump to the next and edit it
 nnoremap ;; a<++><Esc>/<++><CR>
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
-:match StatusLineTermNC /<++>/
+:match WildMenu /<++>/
 
 " the setting about deleting
 noremap  <leader>x  "_x
@@ -272,11 +267,6 @@ func! CompileRunGcc()
 		:term python3 %
 	endif
 endfunc
-
-
-" the model of cursor
-au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-au InsertEnter,InsertChange * silent execute '!echo -ne "\e[5 q]"' | redraw!
 
 
 " ========
