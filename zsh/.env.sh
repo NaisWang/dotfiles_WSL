@@ -75,8 +75,6 @@ alias toc="tb -c"
 alias tod="tb -d"
 alias toC="tb --clear"
 
-alias killz="python3 /mnt/f/dotfiles/dotfiles_WSL/killzsh.py"
-
 # ========
 # ======== nvim
 # ========
@@ -87,8 +85,8 @@ alias vim="nvim"
 # ========
 alias py="python3"
 
+
 # ========
-# ======== fzf 
+# ======== others
 # ========
-export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
-export FZF_DEFAULT_OPTS="--layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+alias killz="python3 /mnt/f/dotfiles/dotfiles_WSL/killzsh.py"

@@ -265,6 +265,8 @@ func! CompileRunGcc()
 		exec "!time ./%<"
 	elseif &filetype == 'python'
 		:term python3 %
+	elseif &filetype == 'html'
+		silent! exec "!chrome.exe % &"
 	endif
 endfunc
 
