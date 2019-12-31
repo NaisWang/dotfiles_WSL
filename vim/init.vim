@@ -83,16 +83,12 @@ noremap s <nop>
 
 map U <C-r>
 
+" Keep cursor at the bottom of the visual selection after you yank it.
+vmap y ygv<Esc>
+
 " uppercase and lowercase
 noremap gu gU
 noremap gU gu
-
-" set wrap
-" set mouse=a " Support mouse opeartion
-
-" Special character setting
-" set list
-" set listchars=tab:▸\ ,trail:▫
 
 " make the Plugin more compatibility
 set nocompatible
@@ -132,47 +128,33 @@ set undodir=~/.vim/undodir
 map J 4j
 map K 4k
 
-" Spilling Check
-map <LEADER>sc :set spell!<CR>
-noremap <C-x> hea<C-x>s
-inoremap <C-x> <Esc>hea<C-x>s
+noremap , ;
 
 " Prevent selecting and pasting from overwriting what you originally copied.
 xnoremap p pgvy
-
-" Keep cursor at the bottom of the visual selection after you yank it.
-vmap y ygv<Esc>
 
 " ========
 " ======== plugin installation
 " ========
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
-
-" theme
 Plug 'morhetz/gruvbox'
-" Plug 'nanotech/jellybeans.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
+Plug 'bling/vim-bufferline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
-" Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
-
 Plug 'Chiel92/vim-autoformat'
-
 Plug 'itchyny/vim-cursorword'  " Underline the word under the cursor
-
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mhinz/vim-startify' "  The fancy start screen for Vim.
 Plug 'jiangmiao/auto-pairs'
-Plug 'ryanoasis/vim-devicons'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 call plug#end()
 
 
@@ -184,6 +166,8 @@ set bg=dark
 let g:gruvbox_contrast_dark="hard"
 set guifont=SauceCodePro\ NF:h10
 
+set laststatus=1
+
 set wildmenu
 set cursorline
 set scrolloff=5
@@ -192,7 +176,6 @@ set number
 syntax on
 
 set smartindent
-
 
 " ========
 " ======== operation
@@ -211,7 +194,6 @@ map <LEADER>k <C-W>k
 map <LEADER>j <C-W>j
 map <LEADER>h <C-W>h
 
-" Rotate screens
 map s\ <C-w>t<C-w>H
 map s- <C-w>t<C-w>K
 
@@ -227,6 +209,7 @@ nmap <right> :vertical resize+5<CR>
 
 " tab setting
 map tu  :tabe
+map tc  :q<CR>
 map th  :-tabnext<CR>
 map tl  :+tabnext<CR>
 " Move the tabs with tmn and tmi
@@ -277,9 +260,18 @@ func! CompileRunGcc()
   elseif &filetype == 'java'
     exec "!javac.exe %"
     exec "!time java.exe %<"
+  elseif &filetype == 'markdown'
+    exec "MarkdownPreview"
   endif
 endfunc
 
+map <LEADER>s :call StopRun()<CR>
+fun! StopRun()
+	exec "w"
+	if &filetype == 'markdown'
+		exec "MarkdownPreviewStop"
+	endif
+endfunc
 
 " ========
 " ======== easymotion
@@ -328,8 +320,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-
-
 " ========
 " ======== Vim-Easy-Align
 " ========
@@ -343,29 +333,11 @@ vmap <LEADER>a <Plug>(EasyAlign)
 autocmd FileType python,shell,coffee set commentstring=#\ %s
 autocmd FileType java,c,cpp set commentstring=//\ %s
 
-
 " ========
 " ======== indentLine
 " ========
 autocmd FileType json let g:indentLine_conceallevel=0
 autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceallevel=2
-
-" ========
-" ======== vim-airline
-" ========
-let g:airline_powerline_fonts=1
-let g:airline_theme = 'bubblegum'
-let g:airline#extensions#tabline#enabled = 1
-function! ArilineInit()
-  let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
-  let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks', '%F'])
-  "let g:airline_section_c = airline#section#create(['filetype'])
-  let g:airline_section_x = airline#section#create(['%P'])
-  let g:airline_section_y = airline#section#create(['%B'])
-  let g:airline_section_z = airline#section#create_right(['%l', '%c'])
-endfunction
-autocmd VimEnter * call ArilineInit()
-
 
 " ========
 " ======== fzf.vim
@@ -389,79 +361,17 @@ nnoremap <silent> <Leader>A :Ag<CR>
 " ========
 nnoremap \f :Autoformat<CR>
 
-" ========
-" ======== neocomplete
-" ========
-" Use neocomplete.
-"let g:neocomplete#enable_at_startup = 1
-"" Use smartcase.
-"let g:neocomplete#enable_smart_case = 1
-"" Set minimum syntax keyword length.
-"let g:neocomplete#sources#syntax#min_keyword_length = 3
-"let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" ===
+" === MarkdownPreview
+" ===
+let g:mkdp_path_to_chrome = "chrome.exe"
+let g:mkdp_auto_start = 0
+let g:mkdp_refresh_slow = 1
+let g:mkdp_auto_close = 0
 
-"" Define dictionary.
-"let g:neocomplete#sources#dictionary#dictionaries = {
-"    \ 'default' : '',
-"    \ 'vimshell' : $HOME.'/.vimshell_hist',
-"    \ 'scheme' : $HOME.'/.gosh_completions'
-"        \ }
-
-"" Define keyword.
-"if !exists('g:neocomplete#keyword_patterns')
-"    let g:neocomplete#keyword_patterns = {}
-"endif
-"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-"" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplete#undo_completion()
-"inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-"" Recommended key-mappings.
-"" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"  " For no inserting <CR> key.
-"  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-"endfunction
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y>  neocomplete#close_popup()
-"inoremap <expr><C-e>  neocomplete#cancel_popup()
-"" Close popup by <Space>.
-""inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-"" For cursor moving in insert mode(Not recommended)
-""inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-""inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-""inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-""inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-"" Or set this.
-""let g:neocomplete#enable_cursor_hold_i = 1
-"" Or set this.
-""let g:neocomplete#enable_insert_char_pre = 1
-
-"" AutoComplPop like behavior.
-""let g:neocomplete#enable_auto_select = 1
-
-"" Shell like behavior(not recommended).
-""set completeopt+=longest
-""let g:neocomplete#enable_auto_select = 1
-""let g:neocomplete#disable_auto_complete = 1
-""inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-
-"" Enable heavy omni completion.
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-"  let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-""let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-""let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-""let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-"" For perlomni.vim setting.
-"" https://github.com/c9s/perlomni.vim
-"le g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" ===
+" === vim-table-mode
+" ===
+noremap <LEADER>tm :TableModeToggle<CR>
+"let g:table_mode_disable_mappings = 1
+let g:table_mode_cell_text_object_i_map = 'k<Bar>'

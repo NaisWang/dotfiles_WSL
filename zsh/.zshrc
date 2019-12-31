@@ -1,31 +1,37 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 ZSH_DISABLE_COMPFIX=true
 
-# TERM theme setting
+# ========
+# ======== TERM theme setting
+# ========
 export TERM=xterm-256color
 
 # Path to your oh-my-zsh installation.
 export ZSH="/root/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# POWERLEVEL10K_MODE='awesome-patched'
 POWERLEVEL10K_MODE='nerdfont-complete'
 ZSH_THEME="powerlevel10k/powerlevel10k"
+POWERLEVEL9K_PROMPT_ON_NEWLINE=false
 
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs virtualenv time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir)
 POWERLEVEL9K_DISABLE_RPROMPT=true
-
 POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="↱"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
+# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="↱"
+# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
+
+POWERLEVEL9K_DIR_HOME_BACKGROUND="clear"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="yellow"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="clear"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="yellow"
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="clear"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="yellow"
+
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
+POWERLEVEL9K_WHITESPACE_BETWEEN_LEFT_SEGMENTS=''
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -166,9 +172,9 @@ source $ZSH/oh-my-zsh.sh
 
 
 # Start tmux as default automatically when shell start
-# if [ -z "$TMUX" ]; then
-# 	tmux
-# fi
+if [ -z "$TMUX" ]; then
+	tmux a || tmux
+fi
 
 # ========
 # ======== the setting of history-substring-search

@@ -23,7 +23,6 @@ source C:/Users/Administrator/snippits.vim
 
 set encoding=utf-8
 
-set backspace=indent,eol,start " make vim can use the backspace key to delete
 let mapleader=" "
 set clipboard=unnamed
 set autochdir " automatically switch directory based on file
@@ -34,13 +33,6 @@ map U <C-r>
 " uppercase and lowercase
 noremap gu gU
 noremap gU gu
-
-" set wrap
-" set mouse=a " Support mouse operation
-
-" Special character setting
-" set list
-" set listchars=tab:▸\ ,trail:▫
 
 " make the Plugin more compatibility
 set nocompatible
@@ -81,14 +73,12 @@ map K 4k
 
 noremap , ;
 
-" Spilling Check
-noremap <C-x> hea<C-x>s
-inoremap <C-x> <Esc>hea<C-x>s
-
 " Keep cursor at the bottom of the visual selection after you operate it
 vmap y ygv<Esc>
-vnoremap gu gugv<Esc>
-vnoremap gU gUgv<Esc>
+
+" uppercase and lowercase
+noremap gu gu
+noremap gU gU
 
 " delete the all marks in all buffers and refresh the file
 noremap m; :delmarks!<CR>:e<CR>
@@ -113,72 +103,29 @@ fun! StopRun()
 	endif
 endfunc
 
-
 " ========
 " ======== plugin installation
 " ========
 call plug#begin('C:/Users/Administrator/.vim/plugged')
 Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'majutsushi/tagbar'
-
-" theme
 Plug 'morhetz/gruvbox' 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
+Plug 'bling/vim-bufferline'
 Plug 'kshenoy/vim-signature'
-Plug 'mbbill/undotree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
-" Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'tacahiroy/ctrlp-funky'
 Plug 'kien/rainbow_parentheses.vim'
-" Plug 'ycm-core/YouCompleteMe'
 Plug 'itchyny/vim-cursorword'  " Underline the word under the cursor
 Plug 'mhinz/vim-startify' "  The fancy start screen for Vim.
 Plug 'jiangmiao/auto-pairs'
-" Plug 'kristijanhusak/vim-hybrid-material'
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'w0rp/ale'
-
-Plug 'junegunn/vim-peekaboo'
-
-" Git
-" Plug 'tpope/vim-fugitive'
-" Plug 'mhinz/vim-signify'
-" Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
-
-" HTML, CSS, JavaScript, PHP, JSON, etc.
-Plug 'Chiel92/vim-autoformat'
-Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-Plug 'elzr/vim-json'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'mattn/emmet-vim'
-
-" python
-Plug 'tmhedberg/SimpylFold'
-Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-Plug 'tweekmonster/braceless.vim'
-" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-
-" Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
+Plug 'iamcco/markdown-preview.vim'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
-
 call plug#end()
-
 
 " ========
 " ======== GUI setting	
@@ -188,6 +135,8 @@ set bg=dark
 let g:gruvbox_contrast_dark="hard" 
 set guioptions=                   " Get rid of the scrollbar on both sides 
 set guifont=SauceCodePro\ NF:h10
+
+set laststatus=1
 
 set wildmenu 
 
@@ -202,13 +151,6 @@ set smartindent
 
 " Keep cursor from flashing
 set guicursor+=a:blinkon0
-
-" Set the cursor color
-" hi Cursor guifg=#ffcc00 guibg=black
-
-" the model of cursor
-" :autocmd InsertEnter * set cul
-" :autocmd InsertLeave * set nocul
 
 " ========
 " ======== operation
@@ -227,7 +169,6 @@ map <LEADER>k <C-W>k
 map <LEADER>j <C-W>j
 map <LEADER>h <C-W>h
 
-" Rotate screens
 map s\ <C-w>t<C-w>H
 map s- <C-w>t<C-w>K
 
@@ -302,53 +243,6 @@ let NERDTreeIgnore = [
 noremap \f :Autoformat<CR>
 
 " ========
-" ======== nerdtree-git-plugin 
-" ========
-" let g:NERDTreeShowIgnoredStatus = 1
-" let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
-
-
-" ========
-" ======== ale
-" ========
-let g:ale_sign_column_always = 1 
-let g:ale_set_highlights = 0
-"自定义error和warning图标
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
-"在vim自带的状态栏中整合ale
-let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-"显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"打开文件时不进行检查
-let g:ale_lint_on_enter = 0
-"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-nmap , <Plug>(ale_previous_wrap)
-nmap . <Plug>(ale_next_wrap)
-"<Leader>s触发/关闭语法检查
-"nmap <Leader>s :ALEToggle<CR>
-"<Leader>d查看错误或警告的详细信息
-" nmap <Leader>d :ALEDetail<CR>
-"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
-let g:ale_linters = {
-\   'c++': ['clang'],
-\   'c': ['clang'],
-\   'python': ['pylint'],
-\}
-
-" ========
 " ======== rainbow-parentheses-vim 
 " ========
 let g:rbpt_colorpairs = [
@@ -377,115 +271,16 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " ========
-" ======== vim-signiture
-" ========
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "dm-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "dm/",
-        \ 'PurgeMarkers'       :  "dm?",
-        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevLineAlpha'  :  "",
-        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevSpotAlpha'  :  "",
-        \ 'GotoNextLineByPos'  :  "",
-        \ 'GotoPrevLineByPos'  :  "",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "",
-        \ 'GotoPrevMarker'     :  "",
-        \ 'GotoNextMarkerAny'  :  "",
-        \ 'GotoPrevMarkerAny'  :  "",
-        \ 'ListLocalMarks'     :  "m/",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
-
-
-" ========
-" ======== MarkdownPreview
-" ========
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 1
-let g:mkdp_refresh_slow = 0
-let g:mkdp_command_for_global = 0
-let g:mkdp_open_to_the_world = 0
-let g:mkdp_open_ip = ''
-let g:mkdp_echo_preview_url = 0
-let g:mkdp_browserfunc = ''
-let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1
-    \ }
-let g:mkdp_markdown_css = ''
-let g:mkdp_highlight_css = ''
-let g:mkdp_port = ''
-let g:mkdp_page_title = '「${name}」'
-
-
-" ========
-" ======== vim-table-mode 
-" ========
-map <LEADER>tm :TableModeToggle<CR>
-
-
-" ========
-" ======== Undotree
-" ========
-let g:undotree_DiffAutoOpen = 1
-map L :UndotreeToggle<CR>
-
-
-" ========
-" ======== TagbarToggle
-" ========
-nmap <M-o> :TagbarToggle<CR>
-
-
-" ========
 " ======== Vim-Easy-Align
 " ========
 nmap <LEADER>a <Plug>(EasyAlign)
 vmap <LEADER>a <Plug>(EasyAlign)
-
 
 " ========
 " ======== vim-commentary
 " ========
 autocmd FileType python,shell,coffee set commentstring=#\ %s
 autocmd FileType java,c,cpp set commentstring=//\ %s
-
-
-" ========
-" ======== vim-airline
-" ========
-let g:airline_powerline_fonts=1
-let g:airline_theme = 'bubblegum'
-let g:airline#extensions#tabline#enabled = 1
-function! ArilineInit()
-    let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
-    let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks', '%F'])
-    "let g:airline_section_c = airline#section#create(['filetype'])
-    let g:airline_section_x = airline#section#create(['%P'])
-    let g:airline_section_y = airline#section#create(['%B'])
-    let g:airline_section_z = airline#section#create_right(['%l', '%c'])
-endfunction
-autocmd VimEnter * call ArilineInit()
-
-
-" ========
-" ======== vim-json
-" ========
-let g:indentLine_concealcursor=""
-let g:vim_json_syntax_conceal = 0
-
 
 " ========
 " ======== fzf.vim
@@ -507,85 +302,15 @@ nnoremap <silent> <Leader>A :Ag<CR>
 " ========
 nmap ss <Plug>(easymotion-s2)
 
-" ========
-" ======== neocomplete
-" ========
-" Use neocomplete.
-"let g:neocomplete#enable_at_startup = 1
-"" Use smartcase.
-"let g:neocomplete#enable_smart_case = 1
-"" Set minimum syntax keyword length.
-"let g:neocomplete#sources#syntax#min_keyword_length = 3
-"let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" ===
+" === MarkdownPreview
+" ===
+let g:mkdp_auto_start = 0
+let g:mkdp_refresh_slow = 1
+let g:mkdp_auto_close = 0
 
-"" Define dictionary.
-"let g:neocomplete#sources#dictionary#dictionaries = {
-"    \ 'default' : '',
-"    \ 'vimshell' : $HOME.'/.vimshell_hist',
-"    \ 'scheme' : $HOME.'/.gosh_completions'
-"        \ }
-
-"" Define keyword.
-"if !exists('g:neocomplete#keyword_patterns')
-"    let g:neocomplete#keyword_patterns = {}
-"endif
-"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-"" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplete#undo_completion()
-"inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-"" Recommended key-mappings.
-"" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"  " For no inserting <CR> key.
-"  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-"endfunction
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y>  neocomplete#close_popup()
-"inoremap <expr><C-e>  neocomplete#cancel_popup()
-"" Close popup by <Space>.
-""inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-"" For cursor moving in insert mode(Not recommended)
-""inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-""inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-""inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-""inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-"" Or set this.
-""let g:neocomplete#enable_cursor_hold_i = 1
-"" Or set this.
-""let g:neocomplete#enable_insert_char_pre = 1
-
-"" AutoComplPop like behavior.
-""let g:neocomplete#enable_auto_select = 1
-
-"" Shell like behavior(not recommended).
-""set completeopt+=longest
-""let g:neocomplete#enable_auto_select = 1
-""let g:neocomplete#disable_auto_complete = 1
-""inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-"" Enable omni completion.
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-"" Enable heavy omni completion.
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-"  let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-""let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-""let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-""let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-"" For perlomni.vim setting.
-"" https://github.com/c9s/perlomni.vim
-"let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" ===
+" === vim-table-mode
+" ===
+noremap <LEADER>tm :TableModeToggle<CR>
+let g:table_mode_cell_text_object_i_map = 'k<Bar>'
