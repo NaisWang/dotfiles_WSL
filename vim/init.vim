@@ -139,7 +139,6 @@ xnoremap p pgvy
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
-Plug 'bling/vim-bufferline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -223,6 +222,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 nmap bl  :bnext<CR>
 nmap bh  :bprev<CR>
 nmap bc  :bdelete <CR>
+nmap bb  <C-^>
 
 " Press space and to jump to the next and edit it
 nnoremap ;; a<++><Esc>/<++><CR>
