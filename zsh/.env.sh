@@ -41,52 +41,47 @@ alias gvn="cd /mnt/f/vnote"
 alias gvi="cd /mnt/f/envs"
 alias gle="cd /mnt/c/Users/Administrator/.leetcode"
 
+alias yd="pwd |clip.exe"
+alias yD="wslpath -m $(pwd) | tr -d \\n |clip.exe"
+
 # ========
-# ======== widows software
+# ======== linux software
 # ========
-alias ab='nohup Acrobat &'
-alias workon=". workon.sh"
-alias sc="screenfetch"
 alias ra="ranger"
-alias image="ImageGlass_sh.sh"
-alias gvim="gvim.sh"
+alias sc="screenfetch"
 alias rm="trash-put"
-alias code="code.sh"
-alias ps="powershell.exe"
 
-# ========
-# ======== colorls
-# ========
-alias lsc="colorls"
-alias llc="colorls -lA --sd"
-
-# ========
-# ======== tmux
-# ========
+# tmux
 alias t="tmux"
 alias ta="tmux a"
 
-# ========
-# ======== taskbook
-# ========
+# taskbook
 alias to="tb"
 alias tot="tb -t"
 alias toc="tb -c"
 alias tod="tb -d"
 alias toC="tb --clear"
 
-# ========
-# ======== nvim
-# ========
+# nvim
 alias vim="nvim"
 
-# ========
-# ======== python3
-# ========
+# colorls
+alias lsc="colorls"
+alias llc="colorls -lA --sd"
+
+# python3
 alias py="python3"
+alias ipy="ipython3"
 
-
-# ========
-# ======== others
-# ========
 alias killz="python3 /mnt/f/dotfiles/dotfiles_WSL/killzsh.py"
+
+# ========
+# ======== widows software
+# ========
+alias ab='nohup Acrobat &'
+alias workon=". workon.sh"
+alias image="ImageGlass_sh.sh"
+alias gvim="gvim.sh"
+alias code="code.sh"
+alias ps="powershell.exe"
+alias re="explorer.exe . &"

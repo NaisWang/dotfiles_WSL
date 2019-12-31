@@ -1,11 +1,11 @@
-"  __  ____   __  _   _ _____ _____     _____ __  __ 
+"  __  ____   __  _   _ _____ _____     _____ __  __
 " |  \/  \ \ / / | \ | | ____/ _ \ \   / /_ _|  \/  |
 " | |\/| |\ V /  |  \| |  _|| | | \ \ / / | || |\/| |
 " | |  | | | |   | |\  | |__| |_| |\ V /  | || |  | |
 " |_|  |_| |_|   |_| \_|_____\___/  \_/  |___|_|  |_|
 
 " ========
-" ======== startup seting	
+" ======== startup seting
 " ========
 " Auto load for first time uses
 " if empty(glob('~/.vim/autoload/plug.vim'))
@@ -21,46 +21,45 @@ set autowriteall
 source ~/snippits.vim
 
 set encoding=utf-8
-set backspace=indent,eol,start " make vim can use the backspace key to delete
 let mapleader=" "
 set clipboard=unnamedplus
 
 noremap B b
 
 func! GetSelectedText_yy()
-    normal "xY
-    let result = getreg("x")
-    return result
+  normal "xY
+  let result = getreg("x")
+  return result
 endfunc
 
 func! GetSelectedText_y()
-    normal gv"xy
-    let result = getreg("x")
-    return result
+  normal gv"xy
+  let result = getreg("x")
+  return result
 endfunc
 
 func! DeleteSelectedText_d()
-    normal gv"xc
-    let result = getreg("x")
-    return result
+  normal gv"xc
+  let result = getreg("x")
+  return result
 endfunc
 
 func! DeleteSelectedText_dd()
-    normal "xdd
-    let result = getreg("x")
-    return result
+  normal "xdd
+  let result = getreg("x")
+  return result
 endfunc
 
 func! DeleteSelectedText_diw()
-    normal "xdiw
-    let result = getreg("x")
-    return result
+  normal "xdiw
+  let result = getreg("x")
+  return result
 endfunc
 
 func! DeleteSelectedText_D()
-    normal "xD
-    let result = getreg("x")
-    return result
+  normal "xD
+  let result = getreg("x")
+  return result
 endfunc
 
 nnoremap <silent> ;yy  :call system('clip.exe', GetSelectedText_yy())<CR>
@@ -75,8 +74,11 @@ nnoremap <silent> ;D   :call system('clip.exe', DeleteSelectedText_D())<CR>
 
 nnoremap <silent> ;p :r !paste.exe<CR>i<bs><esc>l
 
+" copy and deleting without line break
+nnoremap 'd v$hd
+nnoremap 'y v$hy
+
 set autochdir " automatically switch directory based on file
-let &t_ut='' " make the colour matching more normal
 noremap s <nop>
 
 map U <C-r>
@@ -100,16 +102,19 @@ filetype plugin on
 filetype plugin indent on
 
 " the tab setting
-set tabstop=4     " how many spaces a tab is equal to
-set shiftwidth=4
-set softtabstop=4
-" set expandtab    "the tab is replaced by spaces 
+" how many spaces a tab is equal to
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+"the tab is replaced by spaces
+set expandtab
 
 " the search setting
 set hlsearch
 exec "nohlsearch"
 set incsearch
 set ignorecase
+" if have a capital letter, switch to a case-sensitive search
 set smartcase
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -120,8 +125,8 @@ set foldlevel=99
 " delete the all marks in all buffers and refresh the file
 noremap m; :delmarks!<CR>:e<CR>
 " undo/redo persistence
-set undofile 
-" Set the place of undo. You can create the undofir directory first. 
+set undofile
+" Set the place of undo. You can create the undofir directory first.
 set undodir=~/.vim/undodir
 
 map J 4j
@@ -145,7 +150,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 
 " theme
-Plug 'morhetz/gruvbox' 
+Plug 'morhetz/gruvbox'
 " Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -175,11 +180,11 @@ call plug#end()
 " ======== GUI setting
 " ========
 colorscheme gruvbox
-" colorscheme jellybeans
 set bg=dark
+let g:gruvbox_contrast_dark="hard"
 set guifont=SauceCodePro\ NF:h10
 
-set wildmenu 
+set wildmenu
 set cursorline
 set scrolloff=5
 set relativenumber
@@ -228,14 +233,14 @@ map tl  :+tabnext<CR>
 map tmh :-tabmove<CR>
 map tml :+tabmove<CR>
 
-"When you open the file, the cursor will stay where the file was last opened. 
+"When you open the file, the cursor will stay where the file was last opened.
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Buffer setting
 nmap bl  :bnext<CR>
 nmap bh  :bprev<CR>
 nmap bc  :bdelete <CR>
- 
+
 " Press space and to jump to the next and edit it
 nnoremap ;; a<++><Esc>/<++><CR>
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
@@ -256,18 +261,23 @@ noremap \s :%s//g<left><left>
 noremap <leader>c :call CompileRunGcc()<CR>
 
 func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ -std=c++11 % -Wall -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'python'
-		:term python3 %
-	elseif &filetype == 'html'
-		silent! exec "!chrome.exe % &"
-	endif
+  exec "w"
+  if &filetype == 'c'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'cpp'
+    exec "!g++ -std=c++11 % -Wall -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'python'
+    set splitbelow
+    :sp
+    :term python3 %
+  elseif &filetype == 'html'
+    silent! exec "!chrome.exe % &"
+  elseif &filetype == 'java'
+    exec "!javac.exe %"
+    exec "!time java.exe %<"
+  endif
 endfunc
 
 
@@ -282,34 +292,34 @@ nmap ss <Plug>(easymotion-s2)
 map tt :NERDTreeToggle<CR>
 map tn :NERDTreeFind<CR>
 let NERDTreeMapOpenInTab = "o"
-let NERDTreeShowBookmarks=1 
+let NERDTreeShowBookmarks=1
 " let Nerd Christmas Tree=1   "Make the NERD Tree more bi
 let NERDTreeIgnore = [
-            \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
-            \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
-            \ ]
+      \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
+      \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
+      \ ]
 
 
 " ========
 " ======== rainbow-parentheses-vim
 " ========
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+      \ ['brown',       'RoyalBlue3'],
+      \ ['Darkblue',    'SeaGreen3'],
+      \ ['darkgray',    'DarkOrchid3'],
+      \ ['darkgreen',   'firebrick3'],
+      \ ['darkcyan',    'RoyalBlue3'],
+      \ ['darkred',     'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['brown',       'firebrick3'],
+      \ ['gray',        'RoyalBlue3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['Darkblue',    'firebrick3'],
+      \ ['darkgreen',   'RoyalBlue3'],
+      \ ['darkcyan',    'SeaGreen3'],
+      \ ['darkred',     'DarkOrchid3'],
+      \ ['red',         'firebrick3'],
+      \ ]
 
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
@@ -335,18 +345,24 @@ autocmd FileType java,c,cpp set commentstring=//\ %s
 
 
 " ========
+" ======== indentLine
+" ========
+autocmd FileType json let g:indentLine_conceallevel=0
+autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceallevel=2
+
+" ========
 " ======== vim-airline
 " ========
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#tabline#enabled = 1
 function! ArilineInit()
-    let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
-    let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks', '%F'])
-    "let g:airline_section_c = airline#section#create(['filetype'])
-    let g:airline_section_x = airline#section#create(['%P'])
-    let g:airline_section_y = airline#section#create(['%B'])
-    let g:airline_section_z = airline#section#create_right(['%l', '%c'])
+  let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
+  let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks', '%F'])
+  "let g:airline_section_c = airline#section#create(['filetype'])
+  let g:airline_section_x = airline#section#create(['%P'])
+  let g:airline_section_y = airline#section#create(['%B'])
+  let g:airline_section_z = airline#section#create_right(['%l', '%c'])
 endfunction
 autocmd VimEnter * call ArilineInit()
 
@@ -361,10 +377,10 @@ nnoremap <silent> <Leader>o :History<CR>
 nnoremap <silent> <Leader>m :Marks<CR>
 
 command! -bang -nargs=* Ag
-   \ call fzf#vim#ag(<q-args>,
-   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-   \                 <bang>0)
+      \ call fzf#vim#ag(<q-args>,
+      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+      \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \                 <bang>0)
 nnoremap <silent> <Leader>A :Ag<CR>
 
 

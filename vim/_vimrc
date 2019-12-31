@@ -27,7 +27,6 @@ set backspace=indent,eol,start " make vim can use the backspace key to delete
 let mapleader=" "
 set clipboard=unnamed
 set autochdir " automatically switch directory based on file
-let &t_ut='' " make the colour matching more normal
 noremap s <nop>
 noremap B b
 map U <C-r>
@@ -55,16 +54,17 @@ set langmenu=en_US
 let $LANG= 'en_US'
 
 " the tab setting
-set tabstop=4     " how many spaces a tab is equal to
-set shiftwidth=4 
-set softtabstop=4
-"set expandtab    "the tab is replaced by spaces 
+set tabstop=2     " how many spaces a tab is equal to
+set shiftwidth=2
+set softtabstop=2
+set expandtab    "the tab is replaced by spaces 
 
 " the search setting
 set hlsearch
 exec "nohlsearch"
 set incsearch
 set ignorecase
+" if have a capital letter, switch to a case-sensitive search
 set smartcase
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -124,7 +124,6 @@ Plug 'majutsushi/tagbar'
 
 " theme
 Plug 'morhetz/gruvbox' 
-Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -185,8 +184,8 @@ call plug#end()
 " ======== GUI setting	
 " ========
 colorscheme gruvbox
-" colorscheme jellybeans
 set bg=dark                       
+let g:gruvbox_contrast_dark="hard" 
 set guioptions=                   " Get rid of the scrollbar on both sides 
 set guifont=SauceCodePro\ NF:h10
 
@@ -194,7 +193,6 @@ set wildmenu
 
 " highlight current line
 set cursorline
-
 set scrolloff=5
 set relativenumber
 set number
@@ -273,8 +271,8 @@ vnoremap <leader>d  "_d
 nnoremap <leader>D  "_D
 
 " copy and deleting without line break
-nnoremap ;d <c-v>$hd
-nnoremap ;y <c-v>$hy
+nnoremap 'd v$hd
+nnoremap 'y v$hy
 
 " delete from current to begin
 nnoremap X d^
