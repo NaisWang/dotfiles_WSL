@@ -108,6 +108,20 @@ gvimInit(){
 	Return
 #IfWinActive
 
+; ========
+; ======== Click the chrome's back button by using middle mouse key
+; ========
+#IfWinActive ahk_exe chrome.exe
+	+a::
+    WinGetPos,X,Y,W,H,A
+    X:= X+25
+    Y:= Y+65
+    CoordMode, Mouse, Screen
+    MouseMove, %X%,%Y%
+    MouseClick, Middle
+	Return
+#IfWinActive
+
 
 ; ========
 ; ======== the shortcut key in the Acrobat
@@ -672,3 +686,4 @@ Open(t,p)
 #y::activate("pycharm64.exe") return
 #a::activate("studio64.exe") return
 ;#r::activate("Typora.exe") return
+
