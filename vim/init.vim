@@ -156,7 +156,6 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 call plug#end()
 
-
 " ========
 " ======== GUI setting
 " ========
@@ -214,15 +213,30 @@ map tl  :+tabnext<CR>
 " Move the tabs with tmn and tmi
 map tmh :-tabmove<CR>
 map tml :+tabmove<CR>
+map t1  1gt
+map t2  2gt
+map t3  3gt
+map t4  4gt
+map t5  5gt
 
-"When you open the file, the cursor will stay where the file was last opened.
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" Switch to last-active tab
+if !exists('g:lasttab')
+  let g:lasttab = 1
+endif
+nmap tt :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
 
 " Buffer setting
 nmap bl  :bnext<CR>
 nmap bh  :bprev<CR>
 nmap bc  :bdelete <CR>
 nmap bb  <C-^>
+
+" open a new tab for each open buffer
+nmap bt  :tab sball<CR>
+
+"When you open the file, the cursor will stay where the file was last opened.
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Press space and to jump to the next and edit it
 nnoremap ;; a<++><Esc>/<++><CR>
@@ -281,9 +295,9 @@ nmap ss <Plug>(easymotion-s2)
 " ========
 " ======== NERDTree
 " ========
-map tt :NERDTreeToggle<CR>
+noremap <M-p> :NERDTreeToggle<CR>
 map tn :NERDTreeFind<CR>
-let NERDTreeMapOpenInTab = "o"
+let NERDTreeMapOpenInTab='<ENTER>'
 let NERDTreeShowBookmarks=1
 " let Nerd Christmas Tree=1   "Make the NERD Tree more bi
 let NERDTreeIgnore = [
@@ -375,3 +389,8 @@ let g:mkdp_auto_close = 0
 noremap <LEADER>tm :TableModeToggle<CR>
 "let g:table_mode_disable_mappings = 1
 let g:table_mode_cell_text_object_i_map = 'k<Bar>'
+
+" ========
+" ========  auto-pairs
+" ========
+let g:AutoPairsShortcutToggle = ''
