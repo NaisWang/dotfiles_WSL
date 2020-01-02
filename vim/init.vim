@@ -24,6 +24,9 @@ set encoding=utf-8
 let mapleader=" "
 set clipboard=unnamedplus
 
+" \p to show the current buffer file path
+nnoremap \p 1<C-G>
+
 noremap B b
 
 func! GetSelectedText_yy()
@@ -122,7 +125,7 @@ set foldlevel=99
 noremap m; :delmarks!<CR>:e<CR>
 " undo/redo persistence
 set undofile
-" Set the place of undo. You can create the undofir directory first.
+" " Set the place of undo. You can create the undofir directory first.
 set undodir=~/.vim/undodir
 
 map J 4j
@@ -137,12 +140,15 @@ xnoremap p pgvy
 " ======== plugin installation
 " ========
 call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
+Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
@@ -154,6 +160,11 @@ Plug 'mhinz/vim-startify' "  The fancy start screen for Vim.
 Plug 'jiangmiao/auto-pairs'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'mbbill/undotree'
+Plug 'airblade/vim-gitgutter'
+Plug 'bling/vim-bufferline'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 " ========
@@ -281,10 +292,10 @@ endfunc
 
 map <LEADER>s :call StopRun()<CR>
 fun! StopRun()
-	exec "w"
-	if &filetype == 'markdown'
-		exec "MarkdownPreviewStop"
-	endif
+  exec "w"
+  if &filetype == 'markdown'
+    exec "MarkdownPreviewStop"
+  endif
 endfunc
 
 " ========
@@ -394,3 +405,104 @@ let g:table_mode_cell_text_object_i_map = 'k<Bar>'
 " ========  auto-pairs
 " ========
 let g:AutoPairsShortcutToggle = ''
+
+" ========
+" ======== coc
+" ========
+set hidden
+let g:python_host_prog='/usr/bin/python'
+let g:python3_host_prog='/usr/bin/python3'
+let g:python_highlight_all = 1
+silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint']
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <c-space> coc#refresh()
+" Useful commands
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+set shortmess+=c
+set updatetime=300
+" always show signcolumns
+set signcolumn=yes
+
+" ========
+" ======== vim-signature
+" ========
+let g:SignatureMap = {
+      \ 'Leader':"m",
+      \ 'PlaceNextMark':"m,",
+      \ 'ToggleMarkAtLine':"m.",
+      \ 'PurgeMarksAtLine':"dm",
+      \ 'DeleteMark':"",
+      \ 'PurgeMarks':"",
+      \ 'PurgeMarkers':"",
+      \ 'GotoNextLineAlpha':"m<LEADER>",
+      \ 'GotoPrevLineAlpha':"",
+      \ 'GotoNextSpotAlpha':"m<LEADER>",
+      \ 'GotoPrevSpotAlpha':"",
+      \ 'GotoNextLineByPos':"",
+      \ 'GotoPrevLineByPos':"",
+      \ 'GotoNextSpotByPos':"",
+      \ 'GotoPrevSpotByPos':"",
+      \ 'GotoNextMarker':"",
+      \ 'GotoPrevMarker':"",
+      \ 'GotoNextMarkerAny':"",
+      \ 'GotoPrevMarkerAny':"",
+      \ 'ListLocalMarks':"m/",
+      \ 'ListLocalMarkers':"m?"
+      \ }
+
+" ========
+" ======== Undotree
+" ========
+noremap L :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+function g:Undotree_CustomMap()
+  nmap <buffer> u <plug>UndotreeNextState
+  nmap <buffer> e <plug>UndotreePreviousState
+  nmap <buffer> U 5<plug>UndotreeNextState
+  nmap <buffer> E 5<plug>UndotreePreviousState
+endfunc
+
+
+" ========
+" ======== GitGutter
+" ========
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+autocmd BufWritePost * GitGutter
+nnoremap <LEADER>gf :GitGutterFold<CR>
+nnoremap H :GitGutterPreviewHunk<CR>
+nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
+nnoremap <LEADER>g= :GitGutterNextHunk<CR>
+
+" ========
+" ======== Ultisnips
+" ========
+let g:tex_flavor = "latex"
+inoremap <c-n> <nop>
+let g:UltiSnipsExpandTrigger="<a-m>"
+let g:UltiSnipsJumpForwardTrigger="<a-m>"
+let g:UltiSnipsJumpBackwardTrigger="<a-n>"
+let g:UltiSnipsSnippetDirectories = ['/mnt/f/dotfiles/dotfiles_WSL/vim/Ultisnips']
+silent! au BufEnter,BufRead,BufNewFile * silent! unmap <c-r>
