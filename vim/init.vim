@@ -165,6 +165,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-bufferline'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'liuchengxu/vista.vim'
 call plug#end()
 
 " ========
@@ -506,3 +507,16 @@ let g:UltiSnipsJumpForwardTrigger="<a-m>"
 let g:UltiSnipsJumpBackwardTrigger="<a-n>"
 let g:UltiSnipsSnippetDirectories = ['/mnt/f/dotfiles/dotfiles_WSL/vim/Ultisnips']
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap <c-r>
+
+" ========
+" ======== Vista.vim
+" ========
+noremap <silent> T :Vista!!<CR>
+noremap <silent> <C-t> :Vista finder<CR>
+function! NearestMethodOrFunction() abort
+	return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+set statusline+=%{NearestMethodOrFunction()}
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" e.g., more compact: ["▸ ", ""]
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
