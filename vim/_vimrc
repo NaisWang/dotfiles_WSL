@@ -255,15 +255,13 @@ nnoremap st :Startify<CR>
 " ======== NERDTree
 " ========
 noremap <M-p> :NERDTreeToggle<CR>
-map tn :NERDTreeFind<CR>
-let NERDTreeMapOpenInTab = "o"
-let NERDTreeShowBookmarks=1 
-" let Nerd Christmas Tree=1   "Make the NERD Tree more beautiful
+nn <silent>tn :exec("NERDTree ".expand('%:h'))<CR>
+let NERDTreeMapOpenInTab = "t"
 let NERDTreeIgnore = [
             \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
             \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
             \ ]
-
+let NERDTreeMapToggleHidden = "zh"
 
 " ========
 " ======== vim-autoformat
@@ -379,6 +377,15 @@ set shortmess+=c
 set updatetime=300
 " always show signcolumns
 set signcolumn=yes
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " ===
 " === vim-signature

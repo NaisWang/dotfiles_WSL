@@ -166,6 +166,8 @@ Plug 'bling/vim-bufferline'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'liuchengxu/vista.vim'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim' " For ranger.vim
 call plug#end()
 
 " ========
@@ -308,15 +310,13 @@ nmap ss <Plug>(easymotion-s2)
 " ======== NERDTree
 " ========
 noremap <M-p> :NERDTreeToggle<CR>
-map tn :NERDTreeFind<CR>
-let NERDTreeMapOpenInTab='<ENTER>'
-let NERDTreeShowBookmarks=1
-" let Nerd Christmas Tree=1   "Make the NERD Tree more bi
+nn <silent>tn :exec("NERDTree ".expand('%:h'))<CR>
+let NERDTreeMapOpenInTab='t'
 let NERDTreeIgnore = [
       \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
       \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
       \ ]
-
+let NERDTreeMapToggleHidden = "zh"
 
 " ========
 " ======== rainbow-parentheses-vim
@@ -520,3 +520,9 @@ set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 " e.g., more compact: ["▸ ", ""]
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" ===
+" === Ranger.vim
+" ===
+nnoremap R :Ranger<CR>
+let g:ranger_map_keys = 0
