@@ -1,12 +1,12 @@
-"  __  ____   __   ______     _____ __  __ 
+"  __  ____   __   ______     _____ __  __
 " |  \/  \ \ / /  / ___\ \   / /_ _|  \/  |
 " | |\/| |\ V /  | |  _ \ \ / / | || |\/| |
 " | |  | | | |   | |_| | \ V /  | || |  | |
 " |_|  |_| |_|    \____|  \_/  |___|_|  |_|
-"                                         
+"
 
 " ========
-" ======== startup seting	
+" ======== startup seting
 " ========
 "  Auto load for first time uses
 " if empty(glob('E:/gvim/autoload/plug.vim'))
@@ -52,7 +52,7 @@ let $LANG= 'en_US'
 set tabstop=2     " how many spaces a tab is equal to
 set shiftwidth=2
 set softtabstop=2
-set expandtab    "the tab is replaced by spaces 
+set expandtab    "the tab is replaced by spaces
 
 " the search setting
 set hlsearch
@@ -67,8 +67,8 @@ noremap <LEADER><CR> :nohlsearch<CR>
 set foldmethod=indent
 set foldlevel=99
 " undo/redo persistence
-set undofile 
-" Set the place of undo. You can create the undofir directory first. 
+set undofile
+" Set the place of undo. You can create the undofir directory first.
 set undodir=~/.vim/undodir
 
 map J 4j
@@ -100,10 +100,10 @@ endfunc
 " stop run
 map <LEADER>s :call StopRun()<CR>
 fun! StopRun()
-	exec "w"
-	if &filetype == 'markdown'
-		exec "MarkdownPreviewStop"
-	endif
+  exec "w"
+  if &filetype == 'markdown'
+    exec "MarkdownPreviewStop"
+  endif
 endfunc
 
 " ========
@@ -113,7 +113,7 @@ call plug#begin('C:/Users/Administrator/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'kshenoy/vim-signature'
-Plug 'morhetz/gruvbox' 
+Plug 'morhetz/gruvbox'
 Plug 'kshenoy/vim-signature'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -139,18 +139,18 @@ Plug 'liuchengxu/vista.vim'
 call plug#end()
 
 " ========
-" ======== GUI setting	
+" ======== GUI setting
 " ========
 colorscheme gruvbox
-set bg=dark                       
-let g:gruvbox_contrast_dark="hard" 
-set guioptions=                   " Get rid of the scrollbar on both sides 
+set bg=dark
+let g:gruvbox_contrast_dark="hard"
+set guioptions=                   " Get rid of the scrollbar on both sides
 " set guifont=SauceCodePro\ NF:h10
 set guifont=Source\ Code\ Pro:h10
 
-set laststatus=1
+set laststatus=0
 
-set wildmenu 
+set wildmenu
 
 " highlight current line
 set cursorline
@@ -224,7 +224,7 @@ nmap bb  <C-^>
 " open a new tab for each open buffer
 nmap bt  :tab sball<CR>
 
-"When you open the file, the cursor will stay where the file was last opened. 
+"When you open the file, the cursor will stay where the file was last opened.
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Press space and to jump to the next and edit it
@@ -258,9 +258,9 @@ noremap <M-p> :NERDTreeToggle<CR>
 nn <silent>tn :exec("NERDTree ".expand('%:h'))<CR>
 let NERDTreeMapOpenInTab = "t"
 let NERDTreeIgnore = [
-            \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
-            \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
-            \ ]
+      \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.svn$', '\.swp$',
+      \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
+      \ ]
 let NERDTreeMapToggleHidden = "zh"
 
 " ========
@@ -269,25 +269,25 @@ let NERDTreeMapToggleHidden = "zh"
 noremap \f :Autoformat<CR>
 
 " ========
-" ======== rainbow-parentheses-vim 
+" ======== rainbow-parentheses-vim
 " ========
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+      \ ['brown',       'RoyalBlue3'],
+      \ ['Darkblue',    'SeaGreen3'],
+      \ ['darkgray',    'DarkOrchid3'],
+      \ ['darkgreen',   'firebrick3'],
+      \ ['darkcyan',    'RoyalBlue3'],
+      \ ['darkred',     'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['brown',       'firebrick3'],
+      \ ['gray',        'RoyalBlue3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['Darkblue',    'firebrick3'],
+      \ ['darkgreen',   'RoyalBlue3'],
+      \ ['darkcyan',    'SeaGreen3'],
+      \ ['darkred',     'DarkOrchid3'],
+      \ ['red',         'firebrick3'],
+      \ ]
 
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
@@ -316,10 +316,10 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>p :Lines<CR>
 nnoremap <silent> <Leader>o :History<CR>
 command! -bang -nargs=* Ag
-   \ call fzf#vim#ag(<q-args>,
-   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-   \                 <bang>0)
+      \ call fzf#vim#ag(<q-args>,
+      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+      \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \                 <bang>0)
 nnoremap <silent> <Leader>A :Ag<CR>
 
 
@@ -349,10 +349,8 @@ let g:AutoPairsShortcutToggle = ''
 " ========
 " ======== coc
 " ========
-let g:python_highlight_all = 1
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint']
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set hidden 
+let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss' ,'coc-emmet', 'coc-java']
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -362,10 +360,7 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <c-space> coc#refresh()
 " Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -385,34 +380,49 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <c-p> :call <SID>show_documentation()<CR>
+
+silent! au BufEnter,BufRead,BufNewFile * silent :CocDisable
+if !exists('g:cocStatus')
+  let g:cocStatu = 0
+endif
+function! ChangeStatus()
+  if g:cocStatu == 1
+    let g:cocStatu = 0
+    exe ":CocDisable"
+  else
+    let g:cocStatu = 1
+    exe ":CocEnable"
+  endif
+endfunction
+nnoremap <silent><expr> <c-space> ChangeStatus()
 
 " ===
 " === vim-signature
 " ===
 let g:SignatureMap = {
-			\ 'Leader':"m",
-			\ 'PlaceNextMark':"m,",
-			\ 'ToggleMarkAtLine':"m.",
-			\ 'PurgeMarksAtLine':"dm",
-			\ 'DeleteMark':"",
-			\ 'PurgeMarks':"",
-			\ 'PurgeMarkers':"",
-			\ 'GotoNextLineAlpha':"m<LEADER>",
-			\ 'GotoPrevLineAlpha':"",
-			\ 'GotoNextSpotAlpha':"m<LEADER>",
-			\ 'GotoPrevSpotAlpha':"",
-			\ 'GotoNextLineByPos':"",
-			\ 'GotoPrevLineByPos':"",
-			\ 'GotoNextSpotByPos':"",
-			\ 'GotoPrevSpotByPos':"",
-			\ 'GotoNextMarker':"",
-			\ 'GotoPrevMarker':"",
-			\ 'GotoNextMarkerAny':"",
-			\ 'GotoPrevMarkerAny':"",
-			\ 'ListLocalMarks':"m/",
-			\ 'ListLocalMarkers':"m?"
-			\ }
+      \ 'Leader':"m",
+      \ 'PlaceNextMark':"m,",
+      \ 'ToggleMarkAtLine':"m.",
+      \ 'PurgeMarksAtLine':"dm",
+      \ 'DeleteMark':"",
+      \ 'PurgeMarks':"",
+      \ 'PurgeMarkers':"",
+      \ 'GotoNextLineAlpha':"m<LEADER>",
+      \ 'GotoPrevLineAlpha':"",
+      \ 'GotoNextSpotAlpha':"m<LEADER>",
+      \ 'GotoPrevSpotAlpha':"",
+      \ 'GotoNextLineByPos':"",
+      \ 'GotoPrevLineByPos':"",
+      \ 'GotoNextSpotByPos':"",
+      \ 'GotoPrevSpotByPos':"",
+      \ 'GotoNextMarker':"",
+      \ 'GotoPrevMarker':"",
+      \ 'GotoNextMarkerAny':"",
+      \ 'GotoPrevMarkerAny':"",
+      \ 'ListLocalMarks':"m/",
+      \ 'ListLocalMarkers':"m?"
+      \ }
 
 " ===
 " === Undotree
@@ -425,10 +435,10 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-	nmap <buffer> u <plug>UndotreeNextState
-	nmap <buffer> e <plug>UndotreePreviousState
-	nmap <buffer> U 5<plug>UndotreeNextState
-	nmap <buffer> E 5<plug>UndotreePreviousState
+  nmap <buffer> u <plug>UndotreeNextState
+  nmap <buffer> e <plug>UndotreePreviousState
+  nmap <buffer> U 5<plug>UndotreeNextState
+  nmap <buffer> E 5<plug>UndotreePreviousState
 endfunc
 
 
@@ -460,8 +470,3 @@ silent! au BufEnter,BufRead,BufNewFile * silent! unmap <c-r>
 " ========
 noremap <silent> T :Vista!!<CR>
 noremap <silent> <C-t> :Vista finder<CR>
-function! NearestMethodOrFunction() abort
-	return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-set statusline+=%{NearestMethodOrFunction()}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()

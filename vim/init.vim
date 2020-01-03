@@ -178,7 +178,7 @@ set bg=dark
 let g:gruvbox_contrast_dark="hard"
 set guifont=SauceCodePro\ NF:h10
 
-set laststatus=1
+set laststatus=0
 
 set wildmenu
 set cursorline
@@ -413,10 +413,9 @@ let g:AutoPairsShortcutToggle = ''
 set hidden
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
-let g:python_highlight_all = 1
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint']
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" let g:python_highlight_all = 1
+" silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-emmet']
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -426,10 +425,7 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <c-space> coc#refresh()
 " Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -439,6 +435,31 @@ set shortmess+=c
 set updatetime=300
 " always show signcolumns
 set signcolumn=yes
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+nnoremap <silent> <c-p> :call <SID>show_documentation()<CR>
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+silent! au BufEnter,BufRead,BufNewFile * silent :CocDisable
+if !exists('g:cocStatus')
+  let g:cocStatu = 0
+endif
+function! ChangeStatus()
+  if g:cocStatu == 1
+    let g:cocStatu = 0
+    exe ":CocDisable"
+  else
+    let g:cocStatu = 1
+    exe ":CocEnable"
+  endif 
+endfunction
+nnoremap <silent><expr> <c-space> ChangeStatus()
 
 " ========
 " ======== vim-signature
@@ -478,10 +499,10 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-  nmap <buffer> u <plug>UndotreeNextState
-  nmap <buffer> e <plug>UndotreePreviousState
-  nmap <buffer> U 5<plug>UndotreeNextState
-  nmap <buffer> E 5<plug>UndotreePreviousState
+  nmap <buffer> l <plug>UndotreeNextState
+  nmap <buffer> h <plug>UndotreePreviousState
+  nmap <buffer> L 5<plug>UndotreeNextState
+  nmap <buffer> H 5<plug>UndotreePreviousState
 endfunc
 
 
@@ -506,23 +527,16 @@ let g:UltiSnipsExpandTrigger="<a-m>"
 let g:UltiSnipsJumpForwardTrigger="<a-m>"
 let g:UltiSnipsJumpBackwardTrigger="<a-n>"
 let g:UltiSnipsSnippetDirectories = ['/mnt/f/dotfiles/dotfiles_WSL/vim/Ultisnips']
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap <c-r>
+
 
 " ========
 " ======== Vista.vim
 " ========
 noremap <silent> T :Vista!!<CR>
 noremap <silent> <C-t> :Vista finder<CR>
-function! NearestMethodOrFunction() abort
-	return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-set statusline+=%{NearestMethodOrFunction()}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-" e.g., more compact: ["▸ ", ""]
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
-" ===
-" === Ranger.vim
-" ===
+" ========
+" ======== Ranger.vim
+" ========
 nnoremap R :Ranger<CR>
 let g:ranger_map_keys = 0

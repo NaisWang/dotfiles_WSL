@@ -17,6 +17,10 @@ xmind=/mnt/c/"Program Files"/"XMind ZEN"
 tmux=~/tmux-master
 export PATH=/bin:$PATH:${tmux}:${Acrobat}:${notepad}:${typora}:${Office}:${potplay}:${quickLook}:${zip7}:${fd}:${chrome}:${gvim}:${ImageGlass}:${code}:${xmind}
 
+export JAVA_HOME=/usr/local/share/jdk/jdk1.8.0_231
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=$JAVA_HOME/lib/dt.jr:$JAVA_HOME/lib/tools.jar
+
 # ========
 # ======== the alias of path 
 # ========
@@ -37,10 +41,9 @@ alias gsm="cd /mnt/f/study-materials"
 alias gc+="cd /mnt/f/c++_project"
 alias gmp="cd /mnt/f/temporary"
 alias gbd="cd /mnt/f/BaiduNetdiskDownload"
-alias gvn="cd /mnt/f/vnote"
 alias gvi="cd /mnt/f/envs"
 alias gle="cd /mnt/c/Users/Administrator/.leetcode"
-
+alias gvn="cd /mnt/f/blog/blogGitee/source/_posts"
 alias yd="pwd |clip.exe"
 alias yD="wslpath -m $(pwd) | tr -d \\n |clip.exe"
 
