@@ -1,4 +1,5 @@
 {
   "yank.enableCompletion" : false,
   "codeLens.enable": true,
+  "suggest.autoTrigger": "none"
 }

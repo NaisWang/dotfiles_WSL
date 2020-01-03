@@ -413,9 +413,8 @@ let g:AutoPairsShortcutToggle = ''
 set hidden
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
-" let g:python_highlight_all = 1
-" silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-emmet']
+let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-emmet']
+
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -425,6 +424,9 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
+
 " Useful commands
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -444,22 +446,8 @@ function! s:show_documentation()
   endif
 endfunction
 nnoremap <silent> <c-p> :call <SID>show_documentation()<CR>
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-silent! au BufEnter,BufRead,BufNewFile * silent :CocDisable
-if !exists('g:cocStatus')
-  let g:cocStatu = 0
-endif
-function! ChangeStatus()
-  if g:cocStatu == 1
-    let g:cocStatu = 0
-    exe ":CocDisable"
-  else
-    let g:cocStatu = 1
-    exe ":CocEnable"
-  endif 
-endfunction
-nnoremap <silent><expr> <c-space> ChangeStatus()
 
 " ========
 " ======== vim-signature
@@ -521,7 +509,6 @@ nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 " ========
 " ======== Ultisnips
 " ========
-let g:tex_flavor = "latex"
 inoremap <c-n> <nop>
 let g:UltiSnipsExpandTrigger="<a-m>"
 let g:UltiSnipsJumpForwardTrigger="<a-m>"
