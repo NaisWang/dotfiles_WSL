@@ -351,6 +351,7 @@ let g:AutoPairsShortcutToggle = ''
 " ========
 set hidden 
 let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss' ,'coc-emmet', 'coc-java']
+
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -365,6 +366,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <M-'> :CocList diagnostics<CR>
 
 let g:python3_host_prog='e:/python3.7.1/python.exe'
 
@@ -381,21 +383,6 @@ function! s:show_documentation()
   endif
 endfunction
 nnoremap <silent> <c-p> :call <SID>show_documentation()<CR>
-
-silent! au BufEnter,BufRead,BufNewFile * silent :CocDisable
-if !exists('g:cocStatus')
-  let g:cocStatu = 0
-endif
-function! ChangeStatus()
-  if g:cocStatu == 1
-    let g:cocStatu = 0
-    exe ":CocDisable"
-  else
-    let g:cocStatu = 1
-    exe ":CocEnable"
-  endif
-endfunction
-nnoremap <silent><expr> <c-space> ChangeStatus()
 
 " ===
 " === vim-signature

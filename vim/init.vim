@@ -24,6 +24,8 @@ set encoding=utf-8
 let mapleader=" "
 set clipboard=unnamedplus
 
+nnoremap <C-a> ggVG
+
 " \p to show the current buffer file path
 nnoremap \p 1<C-G>
 
@@ -432,6 +434,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <M-'> :CocList diagnostics<CR>
 
 set shortmess+=c
 set updatetime=300
@@ -446,7 +449,6 @@ function! s:show_documentation()
   endif
 endfunction
 nnoremap <silent> <c-p> :call <SID>show_documentation()<CR>
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 
 " ========
