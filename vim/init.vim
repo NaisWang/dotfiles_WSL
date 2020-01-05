@@ -364,7 +364,7 @@ autocmd FileType java,c,cpp set commentstring=//\ %s
 " ========
 " ======== indentLine
 " ========
-autocmd FileType json let g:indentLine_conceallevel=0
+autocmd FileType json,markdown let g:indentLine_conceallevel=0
 autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceallevel=2
 
 " ========
@@ -396,6 +396,7 @@ let g:mkdp_path_to_chrome = "chrome.exe"
 let g:mkdp_auto_start = 0
 let g:mkdp_refresh_slow = 1
 let g:mkdp_auto_close = 0
+let g:vim_markdown_conceal=0
 
 " ===
 " === vim-table-mode
@@ -529,4 +530,3 @@ noremap <silent> <C-t> :Vista finder<CR>
 " ========
 nnoremap R :Ranger<CR>
 let g:ranger_map_keys = 0
-

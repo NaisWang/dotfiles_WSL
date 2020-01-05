@@ -1,5 +1,5 @@
 {
   "yank.enableCompletion" : false,
-  "codeLens.enable": true,
-  "suggest.autoTrigger": "none"
+  "suggest.autoTrigger": "none",
+  "signature.target": "none"
 }

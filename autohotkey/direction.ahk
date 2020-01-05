@@ -112,7 +112,7 @@ gvimInit(){
 ; ======== Click the chrome's back button by using middle mouse key
 ; ========
 #IfWinActive ahk_exe chrome.exe
-	+a::
+	^+a::
     WinGetPos,X,Y,W,H,A
     X:= X+25
     Y:= Y+65
