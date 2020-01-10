@@ -621,8 +621,25 @@ return
 !^e::MouseClick, WheelDown, , , 2  
 !^y::MouseClick, WheelUp, , , 2  
 
+
+
+
 ; ========
-; ======== Open or use software quickly
+; ======== window Explorer Launcher
+; ========
+#e::
+  IfWinExist, ahk_class CabinetWClass
+  {
+    GroupAdd, Explorer, ahk_class ExploreWClass
+    GroupAdd, Explorer, ahk_class CabinetWClass
+    WinActivate, ahk_group Explorer
+    Return
+  }
+  Run, Explorer.exe,,,PId
+Return
+
+; ========
+; ======== other programs Launcher
 ; ========
 activate(t)
 {
@@ -643,14 +660,14 @@ Open(t,p)
 	WinGet, OutputVar3, ID, A
 	Run, %p%,,,PId
 	WinWait, ahk_exe %t%
-    WinActivate, ahk_exe %t%
-    WinGet, OutputVar, ProcessName, A
-    WinGet, OutputVar1, ID, A
+  WinActivate, ahk_exe %t%
+  WinGet, OutputVar, ProcessName, A
+  WinGet, OutputVar1, ID, A
 	if(W>1915){
 		movetoLeft(OutputVar2, OutputVar3)
 	}
 	movetoRight(OutputVar,OutputVar1)
-    return
+  return
   }
 }
 
@@ -668,8 +685,6 @@ Open(t,p)
 #^f::Open("firefox.exe","E:/Mozilla Firefox/firefox.exe") return
 #^y::Open("pycharm64.exe","E:/pycharm/pyCharm 2019.2.1/bin/pycharm64.exe") return
 #^a::Open("studio64.exe","E:/android-studio/android-studio-ide-191/bin/studio64.exe") return
-;#^r::Open("Typora.exe","E:/typora/Typora/Typora.exe") return
-
 
 #c::activate("Code.exe") return
 #w::activate("WINWORD.EXE") return
@@ -685,5 +700,3 @@ Open(t,p)
 #f::activate("firefox.exe") return
 #y::activate("pycharm64.exe") return
 #a::activate("studio64.exe") return
-;#r::activate("Typora.exe") return
-

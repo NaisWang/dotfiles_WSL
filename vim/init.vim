@@ -284,7 +284,7 @@ func! CompileRunGcc()
   elseif &filetype == 'python'
     set splitbelow
     :sp
-    :term python3 %
+    :term python3 % || python.exe %
   elseif &filetype == 'html'
     silent! exec "!chrome.exe % &"
   elseif &filetype == 'java'
@@ -294,6 +294,7 @@ func! CompileRunGcc()
     exec "MarkdownPreview"
   endif
 endfunc
+
 
 map <LEADER>s :call StopRun()<CR>
 fun! StopRun()

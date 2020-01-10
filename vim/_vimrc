@@ -37,6 +37,9 @@ map U <C-r>
 noremap gu gU
 noremap gU gu
 
+" Exit from Terminal mode
+tnoremap <ESC> <C-w>:q!<CR>
+
 " make the Plugin more compatibility
 set nocompatible
 filetype on
@@ -307,6 +310,7 @@ vmap <LEADER>a <Plug>(EasyAlign)
 " ========
 autocmd FileType python,shell,coffee set commentstring=#\ %s
 autocmd FileType java,c,cpp set commentstring=//\ %s
+autocmd FileType autohotkey set commentstring=;\ %s
 
 " ========
 " ======== fzf.vim
