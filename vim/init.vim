@@ -20,6 +20,10 @@ set autowriteall
 " My Snippets
 source ~/snippits.vim
 
+" Terminate set
+set showcmd
+autocmd TermOpen term://* startinsert
+
 set encoding=utf-8
 let mapleader=" "
 set clipboard=unnamedplus
@@ -284,7 +288,7 @@ func! CompileRunGcc()
   elseif &filetype == 'python'
     set splitbelow
     :sp
-    :term python3 % || python.exe %
+    :term python3 % || echo ==================== window ====================  && python.exe %
   elseif &filetype == 'html'
     silent! exec "!chrome.exe % &"
   elseif &filetype == 'java'
@@ -531,3 +535,4 @@ noremap <silent> <C-t> :Vista finder<CR>
 " ========
 nnoremap R :Ranger<CR>
 let g:ranger_map_keys = 0
+
