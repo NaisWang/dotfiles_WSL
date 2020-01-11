@@ -20,8 +20,9 @@ set autowriteall
 " My Snippets
 source ~/snippits.vim
 
-" Terminate set
+" terminal set
 set showcmd
+" Any key can pressed to end the terminal
 autocmd TermOpen term://* startinsert
 
 set encoding=utf-8
@@ -433,7 +434,6 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
-inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
 
 " Useful commands
 nmap <silent> gd <Plug>(coc-definition)
@@ -455,7 +455,6 @@ function! s:show_documentation()
   endif
 endfunction
 nnoremap <silent> <c-p> :call <SID>show_documentation()<CR>
-
 
 " ========
 " ======== vim-signature
@@ -535,4 +534,3 @@ noremap <silent> <C-t> :Vista finder<CR>
 " ========
 nnoremap R :Ranger<CR>
 let g:ranger_map_keys = 0
-
