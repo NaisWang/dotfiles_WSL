@@ -44,6 +44,7 @@ alias gbd="cd /mnt/f/BaiduNetdiskDownload"
 alias gvi="cd /mnt/f/envs"
 alias gle="cd /mnt/c/Users/Administrator/.leetcode"
 alias gvn="cd /mnt/f/blog/blogGitee/source/_posts"
+alias gvs="cd ~/.local/share/nvim/swap"
 alias yd="pwd |clip.exe"
 alias yD="wslpath -m $(pwd) | tr -d \\n |clip.exe"
 
