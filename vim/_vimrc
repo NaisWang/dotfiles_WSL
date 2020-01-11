@@ -374,6 +374,8 @@ nmap <silent> <M-'> :CocList diagnostics<CR>
 
 let g:python3_host_prog='e:/python3.7.1/python.exe'
 
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 set shortmess+=c
 set updatetime=300
 " always show signcolumns

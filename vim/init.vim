@@ -434,7 +434,6 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
-" inoremap <silent><expr> <CR> le() ? "\<C-y><CR>" : "\<CR>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Useful commands
