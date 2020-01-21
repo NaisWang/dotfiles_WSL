@@ -96,6 +96,9 @@ map U <C-r>
 " Keep cursor at the bottom of the visual selection after you yank it.
 vmap y ygv<Esc>
 
+vmap > >gv
+vmap < <gv
+
 " uppercase and lowercase
 noremap gu gU
 noremap gU gu
