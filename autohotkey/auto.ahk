@@ -9,8 +9,6 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-global flag:=1
-
 global MinttyID:=1
 global preWindowID:=1
 global showflag := 0
@@ -19,6 +17,8 @@ global specialPro := {"Code.exe": 1, "wps.exe": 1,"PotPlayerMini64.exe": 1}
 global windows :={}
 global leftWindowWidth := 0
 global rightWindowWidth := 0
+
+global flag:=1
 
 ; ========
 ; ======== Disable the win key
@@ -75,6 +75,10 @@ Return
   }
 Return
 
+~alt up::
+    flag:=1
+Return
+
 !a::
  Send {End}
 Return
@@ -125,6 +129,12 @@ Return
 	}
 	WinActivate, ahk_id %MinttyID%
 Return
+
+#IfWinActive ahk_exe WindowsTerminal.exe
+   +BackSpace::
+      Send +:
+   Return
+#IfWinActive
 
 ; ========
 ; ======== window operation
