@@ -264,6 +264,20 @@ Return
 Return
 
 ; ========
+; ======== window Explorer Launcher
+; ========
+#e::
+  IfWinExist, ahk_class CabinetWClass
+  {
+    GroupAdd, Explorer, ahk_class ExploreWClass
+    GroupAdd, Explorer, ahk_class CabinetWClass
+    WinActivate, ahk_group Explorer
+    Return
+  }
+  Run, Explorer.exe,,,PId
+Return
+
+; ========
 ; ======== other programs activate
 ; ========
 activate(t)
@@ -280,5 +294,6 @@ activate(t)
 #o::activate("chrome.exe") return
 #p::activate("PotPlayerMini64.exe") return
 #i::activate("idea64.exe") return
-#e::activate("Explorer.exe") return
+#g::activate("msedge.exe") return
 #w::activate("webstorm64.exe") return
+
