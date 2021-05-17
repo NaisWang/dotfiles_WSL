@@ -1,41 +1,46 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-ZSH_DISABLE_COMPFIX=true
 
-# ========
-# ======== TERM theme setting
-# ========
 export TERM=xterm-256color
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="/root/.oh-my-zsh"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
-POWERLEVEL10K_MODE='nerdfont-complete'
 ZSH_THEME="powerlevel10k/powerlevel10k"
-POWERLEVEL9K_PROMPT_ON_NEWLINE=false
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir)
 POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 
-# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="↱"
-# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="↳ "
-
 POWERLEVEL9K_DIR_HOME_BACKGROUND="clear"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="yellow"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="31"
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="clear"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="yellow"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="31"
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="clear"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="yellow"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="31"
 
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
 POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
 POWERLEVEL9K_WHITESPACE_BETWEEN_LEFT_SEGMENTS=''
 
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -56,7 +61,7 @@ POWERLEVEL9K_WHITESPACE_BETWEEN_LEFT_SEGMENTS=''
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -68,7 +73,7 @@ POWERLEVEL9K_WHITESPACE_BETWEEN_LEFT_SEGMENTS=''
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="false"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -87,21 +92,13 @@ POWERLEVEL9K_WHITESPACE_BETWEEN_LEFT_SEGMENTS=''
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-		git 
-		virtualenv
-	   	zsh-syntax-highlighting
-		history-substring-search
-		z
-		vi-mode
-		)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
-
 
 # User configuration
 
@@ -129,81 +126,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# install zplug, plugin manager for zsh, https://github.com/zplug/zplug
-# curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-# zplug configruation
-# if [[ ! -d "${ZPLUG_HOME}" ]]; then
-#   if [[ ! -d ~/.zplug ]]; then
-#     git clone https://github.com/zplug/zplug ~/.zplug
-#     # If we can't get zplug, it'll be a very sobering shell experience. To at
-#     # least complete the sourcing of this file, we'll define an always-false
-#     # returning zplug function.
-#     if [[ $? != 0 ]]; then
-#       function zplug() {
-#         return 1
-#       }
-#     fi
-#   fi
-#   export ZPLUG_HOME=~/.zplug
-# fi
-# if [[ -d "${ZPLUG_HOME}" ]]; then
-#   source "${ZPLUG_HOME}/init.zsh"
-# fi
-
-# zplug 'plugins/git', from:oh-my-zsh, if:'which git'
-# zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
-# zplug "plugins/vi-mode", from:oh-my-zsh
-# zplug 'zsh-users/zsh-autosuggestions'
-# zplug 'zsh-users/zsh-completions', defer:2
-# zplug 'zsh-users/zsh-history-substring-search'
-# zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-
-# if ! zplug check; then
-#   zplug install
-# fi
-
-# zplug load
-
-# fzf config, must brew install fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#  
+unsetopt beep
 
 # source self-defined .env.sh
 [ -f ~/.env.sh ] && source ~/.env.sh
-
-
-# Start tmux as default automatically when shell start
-if [ -z "$TMUX" ]; then
-	tmux a || tmux
-fi
-
-# ========
-# ======== the setting of history-substring-search
-# ========
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-# ========
-# ======== the setting of dircolors
-# ========
-eval `dircolors ~/.dircolors` 
-
-# ========
-# ======== set about vi-mode
-# ========
-function zle-keymap-select {
-	if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-		echo -ne '\e[1 q'
-	elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
-		echo -ne '\e[5 q'
-	fi
-}
-# Use beam shape cursor on startup.
-echo -ne '\e[5 q'
-# Use beam shape cursor for each new prompt.
-preexec() {
-	echo -ne '\e[5 q'
-}
-_fix_cursor() {
-	echo -ne '\e[5 q'
-}
-precmd_functions+=(_fix_cursor)
